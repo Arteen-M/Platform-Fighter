@@ -36,4 +36,6 @@ Strategy characters might contain some sort of resource gimmick, or may require 
 
 And more...
 
-This is all still currently in early Alpha, and this document (along with others) will be updated as the project comes along.
+This is all still currently in early Alpha, and this document (along with others) will be updated as the project comes along. This specific Github page is for developers only. If you aren't a developer and just want to play the game, head over to the discord, linked here: https://discord.gg/w5prJEUZQa
+
+Thank you, and I hope to see you there!
