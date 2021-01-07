@@ -1,0 +1,211 @@
+Stickman is currently an unnamed introductory character, not for the player, but rather for the
+development team. Stickman is likely not going to be included in the final project, but will be
+used for gaining experience in animation and programming, for playable demos and for character
+templates.
+
+Balance in attacks and attributes is not highly considered, but considered nonetheless. Mechanics such as
+dashing and shielding will be thoroughly balanced. Universal Mechanics will be given to the Stickman first
+and then other characters, even if they have been added when other characters exist. For all intents and
+purposes, this is absolutely a test character.
+
+Attributes:
+
+Sizes:
+    General Size/ Idle Size/ Most Common Size:
+    30 x 50 Units
+
+    Crouching Size:
+    30 x 40 Units
+
+    Attack Size Changes:
+        Forward Air:
+            50 x 30 Units
+
+        Down Air:
+            30 x 60 Units
+
+
+Speeds/ Velocities:
+    Vertical:
+        Gravity/ Downward Air Accel:
+            0.17 Units
+
+        Max Fall Speed:
+            3.2 Units
+
+        Fast Fall Speed:
+            5.12 Units
+
+        Jump Velocity:
+            (-) 4.8 Units
+
+    Horizontal
+        Run Speed:
+            0.6 Units
+
+        Air Speed:
+            0.45 Units
+
+        Dashing:
+
+            11 Speed Units
+
+            7 Frame leniency
+
+            0/0 Start/ End lag:
+
+            0 Animation Frames
+
+        Pushback Velocity:
+            0.5 Units
+
+        Friction:
+            0.12 Units
+
+        Knockback Resistance:
+            0.2 Units
+
+Misc Attributes:
+    Weight:
+        80 Units
+
+    Dash Frame Leniency:
+        7 Frames
+
+    Hitstun Modifier:
+        0.17 Units (The lower it is, the more hitstun is induced)
+
+
+Action Attributes:
+    Jumpsquat Frames:
+        - 3 Frames of Lag
+        - 3 Frames of Animation
+
+    Double Jump:
+        - 0 Frames of Animation
+        - Instant Activation
+
+    Aerial Drift Frames:
+        - 0 Frames of Lag
+        - 1 Frame of Animation
+
+    Idle Cycle Frames:
+        - 0 Frames of Lag
+        - 70 Frames of Animation
+
+    Run Cycle Frames:
+        - 0 Frames of Lag
+        - 16 Frames of Animation
+
+    Crouch Frames:
+        - 0 Frames of Lag
+        - 2 Frames of Animation
+
+    Jab:
+        - 30 Total Frames (Animation and Lag)
+        - Active on Frame 9/21
+        - Active for 6/6 Frames
+        - 3 Frames of end lag (-3 on Block)
+        - Jab 2 is a commitment (Non-cancelable)
+
+        - 1/4 Damage
+        - 0.5/1 Base Knockback
+        - 0/0.15 Knockback Scaling
+        - 0.01/0.94 X-Axis Modifier
+        - 1/0.34 Y-Axis Modifier
+        - 6/7 Frames of Base Hitstun
+
+    Forward Tilt:
+        - Active of Frame 12
+        - Active for 8 Frames
+        - 5 Frames of end lag (-5 on Block)
+
+        - 12 Damage
+        - 1.05 Base Knockback
+        - 0.14 Knockback Scaling
+        - 0.9 X-Axis Modifier
+        - 0.42 Y-Axis Modifier
+        - 7 Frames of Base Hitstun
+
+    Down Tilt:
+        - Active on Frame 9
+        - Active for 4 Frames
+        - 1 Frame of end lag (-1 on Block)
+
+        - 3 Damage
+        - 3 Base Knockback
+        - 0.03 Knockback Scaling
+        - 0.34 X-Axis Modifier
+        - 0.94 Y-Axis Modifier
+        - 7 Frames of Base Hitstun
+
+    Up Tilt:
+        - Active on Frame 10/18
+        - Active for 4/10 Frames
+        - 7 Frames of end lag (-7 on Block)
+
+        - 4/10 Damage
+        - 4/0.5 Base Knockback
+        - 0/0.1 Knockback Scaling
+        - 0.71/0 X-Axis Modifier
+        - 0.71/1 Y-Axis Modifier
+        - 5/5 Frames of Base Hitstun
+
+    Forward Air:
+        - Active on Frame 3
+        - Active for 12 Frames
+        - 3 Frames of end lag, 0 landing lag (±0 on Block)
+
+        - 9 Damage
+        - 2.5 Base Knockback
+        - 0.12 Knockback Scaling
+        - 0.87 X-Axis Modifier
+        - 0.5 Y-Axis Modifier
+        - 6 Frames of Base Hitstun
+
+    Down Air:
+        - Active on Frame 11
+        - Active for 6 Frames
+        - 3 Frames of end lag, 0 landing lag (±0 on Block)
+
+        - 15 Damage
+        - 3 Base Knockback
+        - 0.17 Knockback Scaling
+        - 1 X-Axis Modifier
+        - 0 Y-Axis Modifier
+        - 5 Frames of Base Hitstun
+
+    Up Air:
+        - Active on Frame 4
+        - Active for 6 Frames
+        - 6 Frames of end lag, 0 landing lag (±0 on Block)
+
+        - 8 Damage
+        - 0.7 Base Knockback
+        - 0.12 Knockback Scaling
+        - 0.17 X-Axis Modifier
+        - 0.98 Y-Axis Modifier
+        - 6 Frames of Base Hitstun
+
+    Back Air:
+        - Active on Frame 16
+        - Active for 4 Frames
+        - 5 Frames of end lag, 0 landing lag (±0 on Block)
+
+        - 10 Damage
+        - 1 Base Knockback
+        - 0.2 Knockback Scaling
+        - 0.97 X-Axis Modifier
+        - 0.26 Y-Axis Modifier
+        - 6 Frames of Base Hitstun
+
+    Neutral Air:
+        - [Incomplete, will be updated later]
+
+    Smash Attacks:
+    [Incomplete, will be updated later]
+
+    Special Moves:
+    [Incomplete, will be updated later]
+
+

@@ -1,0 +1,21 @@
+Unfixed Glitches:
+2. Platforms are disregarded after certain velocities
+
+Possible Solutions:
+2. Make platform bottoms thicker, make platforms velocity resistant (however one goes about doing that)
+
+Fixed Glitches:
+1. Slamming into the side of stage at certain velocity will force a ledge snap,
+    no matter your height (Fixed in 1.0.2)
+3. Animation frames are frozen when sliding off a platform mid-animation (Fixed in 1.0.2)
+4. After falling through a platform, get transported to ledge (Fixed in 1.0.2)
+5. If holding down, animations don't return to idle (Fixed in 1.0.3)
+6. If you fast-fall above the wall, you will collide with it (at certain velocities, same as 2.) (Fixed in 1.0.2)
+7. If connects with blastzone while dashing, respawn position changes (in terms of x) (Fixed in 1.0.2)
+8. Attacking while they are in knockback will change their momentum, even if it doesn't connect (Fixed in 1.0.3)
+9. Landing and changing direction with FAIR changes attack direction (Fixed in 1.0.3)
+10. Landing with FAIR on a certain frames and holding attack launches a sliding f-tilt (Fixed in 1.0.3)
+11. F-tilt hitbox appears before F-tilt animation if performed after landing aerial,
+    then appears again at correct time (Fixed in 1.0.3)
+12. Crouch Boosting. By inputting Crouch, Jump and forward/ backwards within 7 frames of each other,
+does Jump + Dash (Fixed in 1.0.3)
