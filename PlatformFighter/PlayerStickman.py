@@ -1,6 +1,7 @@
 import pygame
 import math
-# import time
+import time
+
 # import os
 
 vec = pygame.math.Vector2
@@ -10,6 +11,12 @@ HEIGHT = 600  # STAGE HEIGHT
 WIDTH = 800  # STAGE WIDTH
 ACC = 0.5  # ACCELERATION (REMOVE MAYBE?)
 FRIC = -0.12  # FRICTION (DECELERATION)
+
+
+def playSFX(song, volume=0.3):
+    pygame.mixer.music.load(song)
+    pygame.mixer.music.play()
+    pygame.mixer.music.set_volume(volume)
 
 
 class PlayerStickman(pygame.sprite.Sprite):
@@ -744,16 +751,76 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.back_air_scale = 0.2
         self.back_air_hitstun = 6
 
+        # FORWARD STRONG SETUP AND ATTRIBUTES
+        self.f_strong_right = ["../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-1.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-1.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-2.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-2.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-3.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-3.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-4.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-4.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-5.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-5.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-6.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-6.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-7.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-7.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-8.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-8.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-9.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-9.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-10.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-10.png",
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-11.png"
+                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-11.png"]
+        self.in_f_strong_right = 0
+
+        self.f_strong_left = ["../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-1.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-1.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-2.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-2.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-3.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-3.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-4.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-4.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-5.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-5.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-6.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-6.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-7.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-7.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-8.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-8.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-9.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-9.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-10.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-10.png",
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-11.png"
+                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-11.png"]
+        self.in_f_strong_left = 0
+
+        self.f_strong_x = math.sin(math.radians(80))
+        self.f_strong_y = math.sin(math.radians(10))
+        self.f_strong_dmg = 19
+        self.f_strong_base = 1.1
+        self.f_strong_scale = 0.14
+        self.f_strong_hitstun = 10
+        self.charge_boost = 0.01
+
+        self.num_rotations = 0
         self.num_lag = 0  # SETS LAG (TYPE: STARTUP/ENDLAG)
         self.in_lag = False  # SETS LAG (TYPE: ALL)
         self.num_active = 0  # HITBOX FRAMES (JAB 1/2)
-        self.num_active_b = 0
+        self.num_active_b = 0  # HITBOX FRAMES (BACK AIR)
         self.jab_1 = False  # JAB 1 IDENTIFIER
         self.jab_2 = False  # JAB 2 IDENTIFIER
         self.num_active_f = 0  # HITBOX FRAMES (F-TILT LEFT and RIGHt) and (FAIR and BAIR)
         self.num_active_d = 0  # HITBOX FRAMES (DOWN-TILT)
         self.num_active_u = 0  # HITBOX FRAMES (UP-TILT, 1)
         self.num_active_u2 = 0  # HITBOX FRAMES (UP-TILT, 2)
+        self.num_active_fs = 0  # HITBOX FRAMES (F-SMASH)
+
         self.numPlayer = numPlayer  # DEFINES YOUR PLAYER NUMBER
         self.minHitstun = 0  # DEFINES THE MINIMUM HITSTUN INDUCED BY AN OPPONENT ATTACK
         self.numHitstun = 0  # SETS LAG (TYPE: HITSTUN)
@@ -790,6 +857,16 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.shield_pos_x = 0
         self.shield_pos_y = 0
 
+        self.shield2_length = 0
+        self.shield2_height = 0
+        self.shield2_pos_x = 0
+        self.shield2_pos_y = 0
+
+        self.shield3_length = 0
+        self.shield3_height = 0
+        self.shield3_pos_x = 0
+        self.shield3_pos_y = 0
+
         self.stocks = stockNum  # SETS NUMBER OF STOCKS
         self.end = False  # SETS END OF GAME
         self.take_momentum = False  # SETS MOMENTUM (ACTIONABLE KNOCKBACK)
@@ -811,6 +888,7 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.press_left_frames = 0  # SAME, BUT FOR LEFT
         self.press_down_frames = 0  # SAME, BUT FOR DOWN
         self.going_down = False  # SETS FAST-FALLING (GOING THROUGH PLATFORMS)
+        self.last_dash = None  # LAST DIRECTION DASHED
 
         self.hurt_pos_x = 0  # HURTBOX POSITION (X)
         self.hurt_pos_y = 0  # HURTBOX POSITION (Y)
@@ -821,6 +899,8 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         self.hitbox_1 = False  # HITBOX (1) VARIABLE
         self.hitbox_2 = False  # HITBOX (2) VARIABLE
+
+        self.frames_after_jump = 0
 
     # WHEN TO GO INTO IDLE CYCLE
     def idleCycle(self):
@@ -881,11 +961,19 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.rect = self.surf.get_rect(center=center)
 
     # CHANGE SHIELD SIZE/ POSITION
-    def shield_size(self, l, h, x, y):
+    def shield_size(self, l, h, x, y, l2, h2, x2, y2, y3):
         self.shield_length = l
         self.shield_height = h
         self.shield_pos_x = x
         self.shield_pos_y = y
+        self.shield2_length = l2
+        self.shield2_height = h2
+        self.shield2_pos_x = x2
+        self.shield2_pos_y = y2
+        self.shield3_length = l2
+        self.shield3_height = h2
+        self.shield3_pos_x = x2
+        self.shield3_pos_y = y3
 
     def knockback_formula(self, angle):
         velocity = angle * (((((self.percentage / 10) + ((self.percentage * (self.opponent_damage / 2)) / 20)) * (
@@ -897,7 +985,8 @@ class PlayerStickman(pygame.sprite.Sprite):
         velocityX = self.knockback_formula(component_x)
         velocityY = self.knockback_formula(component_y)
         velocity = math.sqrt(velocityX ** 2 + velocityY ** 2)
-        self.numHitstun = round(velocity / (2 * self.gravity) - (2 * velocity) + (0.1 * self.percentage)) + self.minHitstun
+        self.numHitstun = round(
+            velocity / (2 * self.gravity) - (2 * velocity) + (0.1 * self.percentage)) + self.minHitstun
         self.knockback_frames = self.numHitstun
         self.total_knockback = self.numHitstun
 
@@ -923,8 +1012,20 @@ class PlayerStickman(pygame.sprite.Sprite):
         else:
             neg = -1
         if 0 < press_frames <= 6 and not (self.take_momentum or self.in_lag):
-            self.vel.x = neg * 11
+            if neg > 0 and (not self.last_dash or self.last_dash is None):
+                self.vel.x = 12
+                self.vel.y = 0
+            elif neg < 0 and (self.last_dash or self.last_dash is None):
+                self.vel.x = -12
+                self.vel.y = 0
+
             press_frames = 7
+
+            if neg > 0:
+                self.last_dash = True
+            elif neg < 0:
+                self.last_dash = False
+
         else:
             press_frames = 7
 
@@ -946,16 +1047,11 @@ class PlayerStickman(pygame.sprite.Sprite):
                 self.in_momentum = 0
 
     # PUSHBACK ON SHIELD
-    def shieldPush(self, shield_dir, opponent_pos):
+    def shieldPush(self, shield_dir):
         if shield_dir == "Right":
             self.vel.x += 0.5
         elif shield_dir == "Left":
             self.vel.x -= 0.5
-        elif shield_dir == "Up" or shield_dir == "Down":
-            if self.pos.x >= opponent_pos:
-                self.vel.x += 0.5
-            else:
-                self.vel.x -= 0.5
 
     # WHEN YOU ARE ON THE GROUND (AVOID REDUNDANT CODE)
     def groundCheck(self):
@@ -1018,8 +1114,8 @@ class PlayerStickman(pygame.sprite.Sprite):
     def move(self, player_key_left, player_key_right, player_key_down):
         self.acc = vec(0, self.gravity)  # GRAVITY
         pressed_keys = pygame.key.get_pressed()
-        if pressed_keys[
-            player_key_left] and self.on_ground and self.platform_hitstun == 0 and not self.is_shielding and self.num_lag <= 0 and self.crouch_frames == 0 and self.in_jumpsquat == 0:
+        if pressed_keys[player_key_left] and self.on_ground and self.platform_hitstun == 0 and not self.is_shielding \
+                and self.num_lag <= 0 and self.crouch_frames == 0 and self.in_jumpsquat == 0:
             # WHEN CAN YOU MOVE LEFT
             # self.hurtbox_size_alteration((30, 50), (self.pos.x, self.pos.y - 27))
 
@@ -1059,8 +1155,8 @@ class PlayerStickman(pygame.sprite.Sprite):
             if self.press_left_frames > 0:
                 self.press_left_frames -= 1
 
-        if pressed_keys[
-            player_key_right] and self.on_ground and self.platform_hitstun == 0 and not self.is_shielding and self.num_lag == 0 and self.crouch_frames == 0 and self.in_jumpsquat == 0:
+        if pressed_keys[player_key_right] and self.on_ground and self.platform_hitstun == 0 and not self.is_shielding \
+                and self.num_lag == 0 and self.crouch_frames == 0 and self.in_jumpsquat == 0:
             # WHEN YOU CAN MOVE RIGHT
             # self.hurtbox_size_alteration((30, 50), (self.pos.x, self.pos.y - 27))
 
@@ -1128,16 +1224,17 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.going_down = False
         self.hurtbox_size_alteration((30, 50), (self.pos.x, self.pos.y - 27))
 
-        if not (self.in_lag or self.is_shielding) and self.crouch_frames == 0:  # CANNOT JUMP IN THESE TWO CASES
+        if not self.in_lag and self.crouch_frames == 0:  # CANNOT JUMP IN THESE TWO CASES
             self.take_momentum = False
-            if self.on_ground:
+            if self.on_ground and self.frames_after_jump == 0:
                 self.in_jumpsquat = len(self.jumpsquat_left)  # START JUMPSQUAT
+                self.frames_after_jump = len(self.jumpsquat_left) + 3
             elif self.jumps > 0:  # OTHERWISE, FRAME 1 JUMP (CHANGE WHEN AERIAL JUMPS HAVE ANIMATIONS)
                 self.vel.y = -4.8
                 self.jumps -= 1
 
     def update(self, player, attack_angle_p_1, tops_1, sides_left_1, sides_right_1, platforms, under_platforms, jumps,
-               shield_dir, other_shield, opponent_pos):
+               shield_dir, other_shield):
         hitsGround = pygame.sprite.spritecollide(player, tops_1, False)
         hitsSideLeft = pygame.sprite.spritecollide(player, sides_left_1, False)
         hitsSideRight = pygame.sprite.spritecollide(player, sides_right_1, False)
@@ -1186,7 +1283,10 @@ class PlayerStickman(pygame.sprite.Sprite):
             self.on_platform = False
 
         if hitsShield:
-            self.shieldPush(shield_dir, opponent_pos)
+            self.shieldPush(shield_dir)
+
+        if self.on_ground:
+            self.last_dash = None
 
         # JUMPSQUAT ANIMATION PLAY
         if self.in_jumpsquat > 0:
@@ -1195,6 +1295,9 @@ class PlayerStickman(pygame.sprite.Sprite):
             if self.in_jumpsquat == 0:
                 self.on_ground = False
                 self.vel.y = -4.8
+
+        if self.frames_after_jump > 0:
+            self.frames_after_jump -= 1
 
         # ATTACKING ANIMATIONS PLAY
         if self.in_f_tilt > 0 or self.in_f_tilt_left > 0:
@@ -1508,6 +1611,34 @@ class PlayerStickman(pygame.sprite.Sprite):
                     self.num_active_b = 0
                     self.num_lag = 0
 
+        elif self.in_f_strong_right > 0 or self.in_f_strong_left > 0:
+            if self.in_f_strong_right > 0:
+                if self.in_f_strong_right == 12:
+                    self.num_active_fs = 6
+
+                if self.num_active_fs > 0:
+                    self.hitbox_alteration(1, 30, 20, self.pos.x + 25, self.pos.y - 30)
+                    self.num_active_fs -= 1
+                else:
+                    self.hitbox_alteration(1, 0, 0, 0, 0)
+                    self.hitbox_alteration(2, 0, 0, 0, 0)
+
+                if not self.on_ground:
+                    self.in_f_strong_right = 0
+                    self.num_active_fs = 0
+                    self.num_lag = 0
+
+            elif self.in_f_strong_left > 0:
+                if self.in_f_strong_left == 12:
+                    self.num_active_fs = 6
+
+                if self.num_active_fs > 0:
+                    self.hitbox_alteration(1, 30, 20, self.pos.x - 25, self.pos.y - 30)
+                    self.num_active_fs -= 1
+                else:
+                    self.hitbox_alteration(1, 0, 0, 0, 0)
+                    self.hitbox_alteration(2, 0, 0, 0, 0)
+
         else:
             self.hitbox_alteration(1, 0, 0, 0, 0)
             self.hitbox_alteration(2, 0, 0, 0, 0)
@@ -1581,7 +1712,16 @@ class PlayerStickman(pygame.sprite.Sprite):
                                         (self.pos.x, self.pos.y - 50))
         # DOUBLE JUMPING
         # SPECIAL ATTACKS
-        # SMASH ATTACKS
+        # FORWARD SMASH
+        elif self.in_f_strong_right > 0 or self.in_f_strong_left > 0 and self.on_ground:
+            self.hurtbox_size_alteration((30, 50), (self.pos.x, self.pos.y - 27))
+            if self.in_f_strong_right > 0:
+                self.hurtbox_alteration(self.f_strong_right[self.in_f_strong_right],
+                                        (self.pos.x - 2, self.pos.y - 26))
+            if self.in_f_strong_left > 0:
+                self.hurtbox_alteration(self.f_strong_left[self.in_f_strong_left],
+                                        (self.pos.x - 2, self.pos.y - 26))
+
         # FORWARD AIR
         elif self.in_f_air_right > 0 or self.in_f_air_left > 0:
             if self.in_f_air_right > 0:
@@ -1716,11 +1856,10 @@ class PlayerStickman(pygame.sprite.Sprite):
 
     def attack(self, attack_key, left_key, right_key, up_key, down_key):
         pressed_keys = pygame.key.get_pressed()
-        pressed_keys_2 = pygame.key.get_pressed()
 
-        if pressed_keys[attack_key] and (pressed_keys_2[left_key] or pressed_keys_2[right_key]) and not (
+        if pressed_keys[attack_key] and (pressed_keys[left_key] or pressed_keys[right_key]) and not (
                 self.in_lag or self.is_shielding):
-            if pressed_keys_2[right_key]:
+            if pressed_keys[right_key]:
                 if self.on_ground:
                     self.num_lag = len(self.f_tilt_right)
                     self.in_f_tilt = len(self.f_tilt_right)
@@ -1730,7 +1869,7 @@ class PlayerStickman(pygame.sprite.Sprite):
                 elif not self.on_ground and not self.direction:
                     self.num_lag = len(self.back_air_left)
                     self.in_back_air_left = len(self.back_air_left)
-            elif pressed_keys_2[left_key]:
+            elif pressed_keys[left_key]:
                 if self.on_ground:
                     self.num_lag = len(self.f_tilt_left)
                     self.in_f_tilt_left = len(self.f_tilt_left)
@@ -1740,7 +1879,7 @@ class PlayerStickman(pygame.sprite.Sprite):
                 elif not self.on_ground and self.direction:
                     self.num_lag = len(self.back_air_right)
                     self.in_back_air_right = len(self.back_air_right)
-        elif pressed_keys[attack_key] and pressed_keys_2[up_key] and not (self.in_lag or self.is_shielding):
+        elif pressed_keys[attack_key] and pressed_keys[up_key] and not (self.in_lag or self.is_shielding):
             if self.on_ground:
                 self.num_lag = len(self.up_tilt_right)
                 self.in_up_tilt = len(self.up_tilt_right)
@@ -1750,7 +1889,7 @@ class PlayerStickman(pygame.sprite.Sprite):
                     self.in_up_air_right = len(self.up_air_right)
                 else:
                     self.in_up_air_left = len(self.up_air_left)
-        elif pressed_keys[attack_key] and pressed_keys_2[down_key] and not (self.in_lag or self.is_shielding):
+        elif pressed_keys[attack_key] and pressed_keys[down_key] and not (self.in_lag or self.is_shielding):
             if self.on_ground:
                 self.num_lag = len(self.down_tilt_right) + 1
                 if self.direction:
@@ -1771,52 +1910,80 @@ class PlayerStickman(pygame.sprite.Sprite):
             # else:
             # NEUTRAL AIR ACTIVATION
 
-    def shielding(self, shield_key, left_key, right_key, up_key, down_key):
+    def strong_attacks(self, strong_key):
         pressed_keys = pygame.key.get_pressed()
-        pressed_keys_2 = pygame.key.get_pressed()
+
+        if pressed_keys[strong_key] and not (self.in_lag or self.is_shielding) and self.on_ground or \
+                (pressed_keys[strong_key] and (self.in_f_strong_right > 0 or self.in_f_strong_left > 0) and self.num_rotations <= 4 and self.on_ground):
+            if self.direction:
+                self.num_lag = 2
+
+                self.in_f_strong_right += 1
+
+                if self.in_f_strong_right == 10:
+                    self.in_f_strong_right = 4
+                    self.num_rotations += 1
+
+            else:
+                self.num_lag = 2
+
+                self.in_f_strong_left += 1
+
+                if self.in_f_strong_left == 10:
+                    self.in_f_strong_left = 4
+                    self.num_rotations += 1
+
+        if (not pressed_keys[strong_key] or self.num_rotations > 4) and self.in_f_strong_right > 0 and self.on_ground:
+            self.in_f_strong_right += 1
+            self.num_lag = 2
+
+        if self.in_f_strong_right >= len(self.f_strong_right) - 1 and self.on_ground:
+            self.in_f_strong_right = 0
+            self.num_lag = 10
+            self.num_rotations = 0
+
+        if (not pressed_keys[strong_key] or self.num_rotations > 4) and self.in_f_strong_left > 0 and self.on_ground:
+            self.in_f_strong_left += 1
+            self.num_lag = 2
+
+        if self.in_f_strong_left >= len(self.f_strong_left) - 1 and self.on_ground:
+            self.in_f_strong_left = 0
+            self.num_lag = 10
+            self.num_rotations = 0
+
+    def shielding(self, shield_key, left_key, right_key):
+        pressed_keys = pygame.key.get_pressed()
         shield_direction = None
 
-        if pressed_keys[
-            shield_key] and self.on_ground and self.numHitstun == 0 and self.num_active == 0 and self.num_active_f == 0 and self.num_active_d == 0 and self.num_active_u == 0:
+        if pressed_keys[shield_key] and self.on_ground and self.numHitstun == 0 and self.num_lag == 0 and self.frames_after_jump == 0:
             self.is_shielding = True
-            if pressed_keys_2[left_key]:
-                self.shield_size(15, 65, self.pos.x - 25, self.pos.y - 30)
+            if pressed_keys[left_key]:
+                self.shield_size(15, 65, self.pos.x - 25, self.pos.y - 30, 30, 15, self.pos.x - 17, self.pos.y - 60, self.pos.y)
                 self.vel.x = 0
                 self.direction = False
                 shield_direction = "Left"
-            elif pressed_keys_2[right_key]:
-                self.shield_size(15, 65, self.pos.x + 25, self.pos.y - 30)
+            elif pressed_keys[right_key]:
+                self.shield_size(15, 65, self.pos.x + 25, self.pos.y - 30, 30, 15, self.pos.x + 18, self.pos.y - 60, self.pos.y)
                 self.vel.x = 0
                 self.direction = True
                 shield_direction = "Right"
-            elif pressed_keys_2[up_key]:
-                self.shield_size(65, 15, self.pos.x, self.pos.y - 60)
-                self.vel.x = 0
-                shield_direction = "Up"
-            elif pressed_keys_2[down_key]:
-                self.shield_size(65, 15, self.pos.x, self.pos.y + 15)
-                self.vel.x = 0
-                shield_direction = "Down"
             else:
                 if self.direction:
-                    self.shield_size(15, 65, self.pos.x + 25, self.pos.y - 30)
+                    self.shield_size(15, 65, self.pos.x + 25, self.pos.y - 30, 30, 15, self.pos.x + 18, self.pos.y - 60, self.pos.y)
                     self.vel.x = 0
                     shield_direction = "Right"
                 else:
-                    self.shield_size(15, 65, self.pos.x - 25, self.pos.y - 30)
+                    self.shield_size(15, 65, self.pos.x - 25, self.pos.y - 30, 30, 15, self.pos.x - 17, self.pos.y - 60, self.pos.y)
                     self.vel.x = 0
                     shield_direction = "Left"
         else:
             self.is_shielding = False
-            self.shield_length = 0
-            self.shield_height = 0
-            self.shield_pos_x = 0
-            self.shield_pos_y = 0
+            self.shield_size(0, 0, 0, 0, 0, 0, 0, 0, 0)
 
         return shield_direction
 
     def createHit(self, activity_11, activity_22):
-        if self.num_active > 0 or self.num_active_d > 0 or self.num_active_f > 0 or self.num_active_u > 0 or self.num_active_u2 > 0 or self.num_active_b > 0:
+        if self.num_active > 0 or self.num_active_d > 0 or self.num_active_f > 0 or self.num_active_u > 0 or self.num_active_u2 > 0 or self.num_active_b > 0 or self.num_active_fs > 0:
             if self.numPlayer == 1:
                 activity_11 = True
                 return activity_11
@@ -1834,116 +2001,142 @@ class PlayerStickman(pygame.sprite.Sprite):
 
     def get_angle(self, attack_attributes_1, attack_attributes_2):
         # ATTACK ATTRIBUTES (or ATTACK_ANGLE_P_1) FORMAT:
-        # (X_COMPONENT (1), Y_COMPONENT(1), X_COMPONENT(2), Y_COMPONENT(2), ATTACK_DAMAGE, BASE_KNOCKBACK, KNOCKBACK_SCALING)
+        # (X_COMPONENT (1), Y_COMPONENT(1), X_COMPONENT(2), Y_COMPONENT(2), MIN HITSTUN, ATTACK_DAMAGE, BASE_KNOCKBACK, KNOCKBACK_SCALING)
         if self.num_active > 0:
             if self.numPlayer == 1:
                 if self.direction:
                     if self.jab_1:
                         attack_attributes_1 = (
-                            self.jab_1_x, self.jab_1_y, 0, 0, self.jab_1_hitstun, self.jab_1_dmg, self.jab_1_base, self.jab_1_scale)
+                            self.jab_1_x, self.jab_1_y, 0, 0, self.jab_1_hitstun, self.jab_1_dmg, self.jab_1_base,
+                            self.jab_1_scale)
                     elif self.jab_2:
                         attack_attributes_1 = (
-                            self.jab_2_x, self.jab_2_y, 0, 0, self.jab_2_hitstun, self.jab_2_dmg, self.jab_2_base, self.jab_2_scale)
+                            self.jab_2_x, self.jab_2_y, 0, 0, self.jab_2_hitstun, self.jab_2_dmg, self.jab_2_base,
+                            self.jab_2_scale)
                 else:
                     if self.jab_1:
                         attack_attributes_1 = (
-                            -1 * self.jab_1_x, self.jab_1_y, 0, 0, self.jab_1_hitstun, self.jab_1_dmg, self.jab_1_base, self.jab_1_scale)
+                            -1 * self.jab_1_x, self.jab_1_y, 0, 0, self.jab_1_hitstun, self.jab_1_dmg, self.jab_1_base,
+                            self.jab_1_scale)
                     elif self.jab_2:
                         attack_attributes_1 = (
-                            -1 * self.jab_2_x, self.jab_2_y, 0, 0, self.jab_2_hitstun, self.jab_2_dmg, self.jab_2_base, self.jab_2_scale)
+                            -1 * self.jab_2_x, self.jab_2_y, 0, 0, self.jab_2_hitstun, self.jab_2_dmg, self.jab_2_base,
+                            self.jab_2_scale)
             else:
                 if self.direction:
                     if self.jab_1:
                         attack_attributes_2 = (
-                            self.jab_1_x, self.jab_1_y, 0, 0, self.jab_1_hitstun, self.jab_1_dmg, self.jab_1_base, self.jab_1_scale)
+                            self.jab_1_x, self.jab_1_y, 0, 0, self.jab_1_hitstun, self.jab_1_dmg, self.jab_1_base,
+                            self.jab_1_scale)
                     elif self.jab_2:
                         attack_attributes_2 = (
-                            self.jab_2_x, self.jab_2_y, 0, 0, self.jab_2_hitstun, self.jab_2_dmg, self.jab_2_base, self.jab_2_scale)
+                            self.jab_2_x, self.jab_2_y, 0, 0, self.jab_2_hitstun, self.jab_2_dmg, self.jab_2_base,
+                            self.jab_2_scale)
                 else:
                     if self.jab_1:
                         attack_attributes_2 = (
-                            -1 * self.jab_1_x, self.jab_1_y, 0, 0, self.jab_1_hitstun, self.jab_1_dmg, self.jab_1_base, self.jab_1_scale)
+                            -1 * self.jab_1_x, self.jab_1_y, 0, 0, self.jab_1_hitstun, self.jab_1_dmg, self.jab_1_base,
+                            self.jab_1_scale)
                     elif self.jab_2:
                         attack_attributes_2 = (
-                            -1 * self.jab_2_x, self.jab_2_y, 0, 0, self.jab_2_hitstun, self.jab_2_dmg, self.jab_2_base, self.jab_2_scale)
+                            -1 * self.jab_2_x, self.jab_2_y, 0, 0, self.jab_2_hitstun, self.jab_2_dmg, self.jab_2_base,
+                            self.jab_2_scale)
         elif self.num_active_f > 0:
             if self.on_ground:
                 if self.direction:
                     if self.numPlayer == 1:
                         attack_attributes_1 = (
-                            self.f_tilt_x, self.f_tilt_y, 0, 0, self.f_tilt_hitstun, self.f_tilt_dmg, self.f_tilt_base, self.f_tilt_scale)
-                    else:
-                        attack_attributes_2 = (
-                            self.f_tilt_x, self.f_tilt_y, 0, 0, self.f_tilt_hitstun, self.f_tilt_dmg, self.f_tilt_base, self.f_tilt_scale)
-                else:
-                    if self.numPlayer == 1:
-                        attack_attributes_1 = (
-                            -1 * self.f_tilt_x, self.f_tilt_y, 0, 0, self.f_tilt_hitstun, self.f_tilt_dmg, self.f_tilt_base,
+                            self.f_tilt_x, self.f_tilt_y, 0, 0, self.f_tilt_hitstun, self.f_tilt_dmg, self.f_tilt_base,
                             self.f_tilt_scale)
                     else:
                         attack_attributes_2 = (
-                            -1 * self.f_tilt_x, self.f_tilt_y, 0, 0, self.f_tilt_hitstun, self.f_tilt_dmg, self.f_tilt_base,
+                            self.f_tilt_x, self.f_tilt_y, 0, 0, self.f_tilt_hitstun, self.f_tilt_dmg, self.f_tilt_base,
+                            self.f_tilt_scale)
+                else:
+                    if self.numPlayer == 1:
+                        attack_attributes_1 = (
+                            -1 * self.f_tilt_x, self.f_tilt_y, 0, 0, self.f_tilt_hitstun, self.f_tilt_dmg,
+                            self.f_tilt_base,
+                            self.f_tilt_scale)
+                    else:
+                        attack_attributes_2 = (
+                            -1 * self.f_tilt_x, self.f_tilt_y, 0, 0, self.f_tilt_hitstun, self.f_tilt_dmg,
+                            self.f_tilt_base,
                             self.f_tilt_scale)
             else:
                 if self.direction:
                     if self.numPlayer == 1:
                         attack_attributes_1 = (
-                            self.f_air_x, self.f_air_y, 0, 0, self.f_air_hitstun, self.f_air_dmg, self.f_air_base, self.f_air_scale)
+                            self.f_air_x, self.f_air_y, 0, 0, self.f_air_hitstun, self.f_air_dmg, self.f_air_base,
+                            self.f_air_scale)
                     else:
                         attack_attributes_2 = (
-                            self.f_air_x, self.f_air_y, 0, 0, self.f_air_hitstun, self.f_air_dmg, self.f_air_base, self.f_air_scale)
+                            self.f_air_x, self.f_air_y, 0, 0, self.f_air_hitstun, self.f_air_dmg, self.f_air_base,
+                            self.f_air_scale)
                 else:
                     if self.numPlayer == 1:
                         attack_attributes_1 = (
-                            -1 * self.f_air_x, self.f_air_y, 0, 0, self.f_air_hitstun, self.f_air_dmg, self.f_air_base, self.f_air_scale)
+                            -1 * self.f_air_x, self.f_air_y, 0, 0, self.f_air_hitstun, self.f_air_dmg, self.f_air_base,
+                            self.f_air_scale)
                     else:
                         attack_attributes_2 = (
-                            -1 * self.f_air_x, self.f_air_y, 0, 0, self.f_air_hitstun, self.f_air_dmg, self.f_air_base, self.f_air_scale)
+                            -1 * self.f_air_x, self.f_air_y, 0, 0, self.f_air_hitstun, self.f_air_dmg, self.f_air_base,
+                            self.f_air_scale)
         elif self.num_active_b > 0:
             if self.direction:
                 if self.numPlayer == 1:
                     attack_attributes_1 = (
-                        -1 * self.back_air_x, self.back_air_y, 0, 0, self.back_air_hitstun, self.back_air_dmg, self.back_air_base,
+                        -1 * self.back_air_x, self.back_air_y, 0, 0, self.back_air_hitstun, self.back_air_dmg,
+                        self.back_air_base,
                         self.back_air_scale)
                 else:
                     attack_attributes_2 = (
-                        -1 * self.back_air_x, self.back_air_y, 0, 0, self.back_air_hitstun, self.back_air_dmg, self.back_air_base,
+                        -1 * self.back_air_x, self.back_air_y, 0, 0, self.back_air_hitstun, self.back_air_dmg,
+                        self.back_air_base,
                         self.back_air_scale)
             else:
                 if self.numPlayer == 1:
                     attack_attributes_1 = (
-                        self.back_air_x, self.back_air_y, 0, 0, self.back_air_hitstun, self.back_air_dmg, self.back_air_base,
+                        self.back_air_x, self.back_air_y, 0, 0, self.back_air_hitstun, self.back_air_dmg,
+                        self.back_air_base,
                         self.back_air_scale)
                 else:
                     attack_attributes_2 = (
-                        self.back_air_x, self.back_air_y, 0, 0, self.back_air_hitstun, self.back_air_dmg, self.back_air_base,
+                        self.back_air_x, self.back_air_y, 0, 0, self.back_air_hitstun, self.back_air_dmg,
+                        self.back_air_base,
                         self.back_air_scale)
         elif self.num_active_u > 0:
             if self.on_ground:
                 if self.numPlayer == 1:
                     attack_attributes_1 = (
-                        self.up_tilt2_x, self.up_tilt2_y, 0, 0, self.up_tilt2_hitstun, self.up_tilt2_dmg, self.up_tilt2_base,
+                        self.up_tilt2_x, self.up_tilt2_y, 0, 0, self.up_tilt2_hitstun, self.up_tilt2_dmg,
+                        self.up_tilt2_base,
                         self.up_tilt2_scale)
                 else:
                     attack_attributes_2 = (
-                        self.up_tilt2_x, self.up_tilt2_y, 0, 0, self.up_tilt2_hitstun, self.up_tilt2_dmg, self.up_tilt2_base,
+                        self.up_tilt2_x, self.up_tilt2_y, 0, 0, self.up_tilt2_hitstun, self.up_tilt2_dmg,
+                        self.up_tilt2_base,
                         self.up_tilt2_scale)
             else:
                 if self.direction:
                     if self.numPlayer == 1:
                         attack_attributes_1 = (
-                            self.up_air_x, self.up_air_y, 0, 0, self.up_air_hitstun, self.up_air_dmg, self.up_air_base, self.up_air_scale)
-                    else:
-                        attack_attributes_2 = (
-                            self.up_air_x, self.up_air_y, 0, 0, self.up_air_hitstun, self.up_air_dmg, self.up_air_base, self.up_air_scale)
-                else:
-                    if self.numPlayer == 1:
-                        attack_attributes_1 = (
-                            -1 * self.up_air_x, self.up_air_y, 0, 0, self.up_air_hitstun, self.up_air_dmg, self.up_air_base,
+                            self.up_air_x, self.up_air_y, 0, 0, self.up_air_hitstun, self.up_air_dmg, self.up_air_base,
                             self.up_air_scale)
                     else:
                         attack_attributes_2 = (
-                            -1 * self.up_air_x, self.up_air_y, 0, 0, self.up_air_hitstun, self.up_air_dmg, self.up_air_base,
+                            self.up_air_x, self.up_air_y, 0, 0, self.up_air_hitstun, self.up_air_dmg, self.up_air_base,
+                            self.up_air_scale)
+                else:
+                    if self.numPlayer == 1:
+                        attack_attributes_1 = (
+                            -1 * self.up_air_x, self.up_air_y, 0, 0, self.up_air_hitstun, self.up_air_dmg,
+                            self.up_air_base,
+                            self.up_air_scale)
+                    else:
+                        attack_attributes_2 = (
+                            -1 * self.up_air_x, self.up_air_y, 0, 0, self.up_air_hitstun, self.up_air_dmg,
+                            self.up_air_base,
                             self.up_air_scale)
 
         elif self.num_active_u2 > 0:
@@ -1951,41 +2144,72 @@ class PlayerStickman(pygame.sprite.Sprite):
                 if self.numPlayer == 1:
                     attack_attributes_1 = (
                         -1 * self.up_tilt1_x, self.up_tilt1_y, self.up_tilt1_x,
-                        self.up_tilt1_y, self.up_tilt1_hitstun, self.up_tilt1_dmg, self.up_tilt1_base, self.up_tilt1_scale)
+                        self.up_tilt1_y, self.up_tilt1_hitstun, self.up_tilt1_dmg, self.up_tilt1_base,
+                        self.up_tilt1_scale)
                 else:
                     attack_attributes_2 = (
                         -1 * self.up_tilt1_x, self.up_tilt1_y, self.up_tilt1_x,
-                        self.up_tilt1_y, self.up_tilt1_hitstun, self.up_tilt1_dmg, self.up_tilt1_base, self.up_tilt1_scale)
+                        self.up_tilt1_y, self.up_tilt1_hitstun, self.up_tilt1_dmg, self.up_tilt1_base,
+                        self.up_tilt1_scale)
 
         elif self.num_active_d > 0:
             if self.on_ground:
                 if self.numPlayer == 1:
                     if self.direction:
                         attack_attributes_1 = (
-                            self.down_tilt_x, self.down_tilt_y, 0, 0, self.down_tilt_hitstun, self.down_tilt_dmg, self.down_tilt_base,
+                            self.down_tilt_x, self.down_tilt_y, 0, 0, self.down_tilt_hitstun, self.down_tilt_dmg,
+                            self.down_tilt_base,
                             self.down_tilt_scale)
                     else:
                         attack_attributes_1 = (
-                            -1 * self.down_tilt_x, self.down_tilt_y, 0, 0, self.down_tilt_hitstun, self.down_tilt_dmg, self.down_tilt_base,
+                            -1 * self.down_tilt_x, self.down_tilt_y, 0, 0, self.down_tilt_hitstun, self.down_tilt_dmg,
+                            self.down_tilt_base,
                             self.down_tilt_scale)
                 else:
                     if self.direction:
                         attack_attributes_2 = (
-                            self.down_tilt_x, self.down_tilt_y, 0, 0, self.down_tilt_hitstun, self.down_tilt_dmg, self.down_tilt_base,
+                            self.down_tilt_x, self.down_tilt_y, 0, 0, self.down_tilt_hitstun, self.down_tilt_dmg,
+                            self.down_tilt_base,
                             self.down_tilt_scale)
                     else:
                         attack_attributes_2 = (
-                            -1 * self.down_tilt_x, self.down_tilt_y, 0, 0, self.down_tilt_hitstun, self.down_tilt_dmg, self.down_tilt_base,
+                            -1 * self.down_tilt_x, self.down_tilt_y, 0, 0, self.down_tilt_hitstun, self.down_tilt_dmg,
+                            self.down_tilt_base,
                             self.down_tilt_scale)
             else:
                 if self.numPlayer == 1:
                     attack_attributes_1 = (
-                        self.down_air_x, self.down_air_y, 0, 0, self.down_air_hitstun, self.down_air_dmg, self.down_air_base,
+                        self.down_air_x, self.down_air_y, 0, 0, self.down_air_hitstun, self.down_air_dmg,
+                        self.down_air_base,
                         self.down_air_scale)
                 else:
                     attack_attributes_2 = (
-                        self.down_air_x, self.down_air_y, 0, 0, self.down_air_hitstun, self.down_air_dmg, self.down_air_base,
+                        self.down_air_x, self.down_air_y, 0, 0, self.down_air_hitstun, self.down_air_dmg,
+                        self.down_air_base,
                         self.down_air_scale)
+        elif self.num_active_fs > 0:
+            if self.numPlayer == 1:
+                if self.direction:
+                    attack_attributes_1 = (
+                        self.f_strong_x, self.f_strong_y, 0, 0, self.f_strong_hitstun, self.f_strong_dmg,
+                        self.f_strong_base,
+                        self.f_strong_scale + (self.charge_boost * self.num_rotations))
+                else:
+                    attack_attributes_1 = (
+                        -1 * self.f_strong_x, self.f_strong_y, 0, 0, self.f_strong_hitstun, self.f_strong_dmg,
+                        self.f_strong_base,
+                        self.f_strong_scale + (self.charge_boost * self.num_rotations))
+            else:
+                if self.direction:
+                    attack_attributes_2 = (
+                        self.f_strong_x, self.f_strong_y, 0, 0, self.f_strong_hitstun, self.f_strong_dmg,
+                        self.f_strong_base,
+                        self.f_strong_scale + (self.charge_boost * self.num_rotations))
+                else:
+                    attack_attributes_2 = (
+                        -1 * self.f_strong_x, self.f_strong_y, 0, 0, self.f_strong_hitstun, self.f_strong_dmg,
+                        self.f_strong_base,
+                        self.f_strong_scale + (self.charge_boost * self.num_rotations))
 
         if self.numPlayer == 1:
             return attack_attributes_1
@@ -1996,7 +2220,7 @@ class PlayerStickman(pygame.sprite.Sprite):
         hits = pygame.sprite.spritecollide(player, other_player, False)
         hits2 = pygame.sprite.spritecollide(player_shield, other_player, False)
         hits3 = pygame.sprite.spritecollide(player, other_player_2, False)
-        if activity_11 and (hits or hits3) and self.numPlayer == 2 and not hits2 and self.invincibility_frames <= 0:
+        if (hits or hits3) and self.numPlayer == 2 and not hits2 and self.invincibility_frames <= 0:  # and activity_11:
             self.take_knockback = True
             if hits:
                 self.hitbox_1 = True
@@ -2008,7 +2232,7 @@ class PlayerStickman(pygame.sprite.Sprite):
                 self.hitbox_1 = False
                 self.hitbox_2 = False
 
-        elif activity_22 and (hits or hits3) and self.numPlayer == 1 and not hits2 and self.invincibility_frames <= 0:
+        elif (hits or hits3) and self.numPlayer == 1 and not hits2 and self.invincibility_frames <= 0:  # and activity_22:
             self.take_knockback = True
             if hits:
                 self.hitbox_1 = True
@@ -2021,4 +2245,3 @@ class PlayerStickman(pygame.sprite.Sprite):
                 self.hitbox_2 = False
         else:
             self.take_knockback = False
-
