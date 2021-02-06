@@ -784,7 +784,7 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.in_neutral_air_left = 0
 
         self.neutral_air_13_x = 0.001
-        self.neutral_air_13_y = 1.2
+        self.neutral_air_13_y = 2
         self.neutral_air_13_dmg = 2
         self.neutral_air_13_base = 0.5
         self.neutral_air_13_scale = 0
@@ -2099,7 +2099,7 @@ class PlayerStickman(pygame.sprite.Sprite):
         return shield_direction
 
     def createHit(self, activity_11, activity_22):
-        if self.num_active > 0 or self.num_active_d > 0 or self.num_active_f > 0 or self.num_active_u > 0\
+        if self.num_active > 0 or self.num_active_d > 0 or self.num_active_f > 0 or self.num_active_u > 0 \
                 or self.num_active_u2 > 0 or self.num_active_b > 0 or self.num_active_fs > 0 or self.num_active_n13 > 0 \
                 or self.num_active_n4 > 0:
             if self.numPlayer == 1:
@@ -2316,11 +2316,21 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         elif self.num_active_n4 > 0:
             if self.numPlayer == 1:
-                attack_attributes_1 = (self.neutral_air_4_x, self.neutral_air_4_y, 0, 0, self.neutral_air_4_hitstun,
-                                       self.neutral_air_4_dmg, self.neutral_air_4_base, self.neutral_air_4_scale)
+                if self.direction:
+                    attack_attributes_1 = (self.neutral_air_4_x, self.neutral_air_4_y, 0, 0, self.neutral_air_4_hitstun,
+                                           self.neutral_air_4_dmg, self.neutral_air_4_base, self.neutral_air_4_scale)
+                else:
+                    attack_attributes_1 = (
+                        -1 * self.neutral_air_4_x, self.neutral_air_4_y, 0, 0, self.neutral_air_4_hitstun,
+                        self.neutral_air_4_dmg, self.neutral_air_4_base, self.neutral_air_4_scale)
             else:
-                attack_attributes_2 = (self.neutral_air_4_x, self.neutral_air_4_y, 0, 0, self.neutral_air_4_hitstun,
-                                       self.neutral_air_4_dmg, self.neutral_air_4_base, self.neutral_air_4_scale)
+                if self.direction:
+                    attack_attributes_2 = (self.neutral_air_4_x, self.neutral_air_4_y, 0, 0, self.neutral_air_4_hitstun,
+                                           self.neutral_air_4_dmg, self.neutral_air_4_base, self.neutral_air_4_scale)
+                else:
+                    attack_attributes_2 = (
+                        -1 * self.neutral_air_4_x, self.neutral_air_4_y, 0, 0, self.neutral_air_4_hitstun,
+                        self.neutral_air_4_dmg, self.neutral_air_4_base, self.neutral_air_4_scale)
 
         elif self.num_active_fs > 0:
             if self.numPlayer == 1:
