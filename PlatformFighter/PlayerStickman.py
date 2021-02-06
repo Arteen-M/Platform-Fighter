@@ -548,43 +548,43 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         # SET PLAYER FORWARD AIR CYCLE
         self.f_air_right = [
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-1.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-2.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-3.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-4.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-5.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-6.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-7.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-8.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-9.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-10.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-11.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-12.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-13.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-14.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-15.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-16.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-17.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-18.png"]
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-1.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-2.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-3.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-4.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-5.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-6.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-7.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-8.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-9.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-10.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-11.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-12.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-13.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-14.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-15.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-16.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-17.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-18.png"]
         self.f_air_left = [
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-1.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-2.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-3.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-4.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-5.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-6.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-7.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-8.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-9.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-10.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-11.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-12.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-13.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-14.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-15.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-16.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-17.png",
-            "C:/Users/matee/PycharmProjects/PlatformFighter/Stickman Character/Forward Air/stick_char_fair-18.png"]
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-1.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-2.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-3.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-4.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-5.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-6.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-7.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-8.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-9.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-10.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-11.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-12.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-13.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-14.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-15.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-16.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-17.png",
+            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-18.png"]
         self.in_f_air_right = 0
         self.in_f_air_left = 0
 
@@ -751,6 +751,52 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.back_air_scale = 0.2
         self.back_air_hitstun = 6
 
+        # NEUTRAL AIR SETUP AND ATTRIBUTES
+        self.neutral_air = ["../PlatformFighter/Stickman Character/Neutral Air/Nair_0.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_1.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_2.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_3.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_4.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_5.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_6.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_7.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_8.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_9.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_10.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_11.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_12.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_13.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_14.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_15.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_16.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_17.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_18.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_19.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_20.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_21.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_22.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_23.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_24.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_25.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_26.png",
+                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_27.png"]
+        self.in_neutral_air_right = 0
+        self.in_neutral_air_left = 0
+
+        self.neutral_air_13_x = 0.001
+        self.neutral_air_13_y = 1.2
+        self.neutral_air_13_dmg = 2
+        self.neutral_air_13_base = 0.5
+        self.neutral_air_13_scale = 0
+        self.neutral_air_13_hitstun = 9
+
+        self.neutral_air_4_x = math.sin(math.radians(20))
+        self.neutral_air_4_y = math.sin(math.radians(60))
+        self.neutral_air_4_dmg = 7
+        self.neutral_air_4_base = 0.2
+        self.neutral_air_4_scale = 0.1
+        self.neutral_air_4_hitstun = 2
+
         # FORWARD STRONG SETUP AND ATTRIBUTES
         self.f_strong_right = ["../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-1.png",
                                "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-1.png",
@@ -813,6 +859,8 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.in_lag = False  # SETS LAG (TYPE: ALL)
         self.num_active = 0  # HITBOX FRAMES (JAB 1/2)
         self.num_active_b = 0  # HITBOX FRAMES (BACK AIR)
+        self.num_active_n13 = 0  # HITBOX FRAMES (NAIR, 1-3)
+        self.num_active_n4 = 0  # HITBOX FRAMES (NAIR, 4)
         self.jab_1 = False  # JAB 1 IDENTIFIER
         self.jab_2 = False  # JAB 2 IDENTIFIER
         self.num_active_f = 0  # HITBOX FRAMES (F-TILT LEFT and RIGHt) and (FAIR and BAIR)
@@ -1150,7 +1198,8 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         else:
             self.pressing_left = False  # IF YOU'RE NOT PRESSING LEFT
-            self.in_walk_cycle_left = 0  # END WALK CYCLE (MAYBE START IDLE CYCLE? IDLE CYCLE DEPENDANT ON PRESS OR ON ANIMATION)
+            self.in_walk_cycle_left = 0  # END WALK CYCLE (MAYBE START IDLE CYCLE? IDLE CYCLE DEPENDANT ON PRESS OR
+            # ON ANIMATION)
             # LOWERS PRESS FRAMES
             if self.press_left_frames > 0:
                 self.press_left_frames -= 1
@@ -1611,6 +1660,55 @@ class PlayerStickman(pygame.sprite.Sprite):
                     self.num_active_b = 0
                     self.num_lag = 0
 
+        elif self.in_neutral_air_right > 0 or self.in_neutral_air_left > 0:
+            if self.in_neutral_air_right > 0:
+                self.in_neutral_air_right -= 1
+
+                if self.in_neutral_air_right == 21 or self.in_neutral_air_right == 14 or self.in_neutral_air_right == 8:
+                    self.num_active_n13 = 2
+                elif self.in_neutral_air_right == 0:
+                    self.num_active_n4 = 2
+
+                if self.num_active_n13 > 0:
+                    self.hitbox_alteration(1, 30, 50, self.pos.x, self.pos.y - 27)
+                    self.num_active_n13 -= 1
+                elif self.num_active_n4 > 0:
+                    self.hitbox_alteration(1, 30, 50, self.pos.x, self.pos.y - 27)
+                    self.num_active_n4 -= 1
+                else:
+                    self.hitbox_alteration(1, 0, 0, 0, 0)
+                    self.hitbox_alteration(2, 0, 0, 0, 0)
+
+                if self.on_ground:
+                    self.in_neutral_air_right = 0
+                    self.num_active_n13 = 0
+                    self.num_active_n4 = 0
+                    self.num_lag = 0
+
+            elif self.in_neutral_air_left > 0:
+                self.in_neutral_air_left -= 1
+
+                if self.in_neutral_air_left == 21 or self.in_neutral_air_left == 14 or self.in_neutral_air_left == 8:
+                    self.num_active_n13 = 2
+                elif self.in_neutral_air_left == 0:
+                    self.num_active_n4 = 2
+
+                if self.num_active_n13 > 0:
+                    self.hitbox_alteration(1, 30, 50, self.pos.x, self.pos.y - 27)
+                    self.num_active_n13 -= 1
+                elif self.num_active_n4 > 0:
+                    self.hitbox_alteration(1, 30, 50, self.pos.x, self.pos.y - 27)
+                    self.num_active_n4 -= 1
+                else:
+                    self.hitbox_alteration(1, 0, 0, 0, 0)
+                    self.hitbox_alteration(2, 0, 0, 0, 0)
+
+                if self.on_ground:
+                    self.in_neutral_air_left = 0
+                    self.num_active_n13 = 0
+                    self.num_active_n4 = 0
+                    self.num_lag = 0
+
         elif self.in_f_strong_right > 0 or self.in_f_strong_left > 0:
             if self.in_f_strong_right > 0:
                 if self.in_f_strong_right == 12:
@@ -1772,6 +1870,14 @@ class PlayerStickman(pygame.sprite.Sprite):
                                         (self.pos.x, self.pos.y - 50))
 
         # NEUTRAL AIR
+        elif self.in_neutral_air_right > 0 or self.in_neutral_air_left > 0:
+            self.hurtbox_size_alteration((30, 50), (self.pos.x, self.pos.y - 27))
+            if self.in_neutral_air_right > 0:
+                self.hurtbox_alteration(self.neutral_air[(len(self.neutral_air) - 1) -
+                                                         self.in_neutral_air_right], (self.pos.x, self.pos.y - 25))
+            elif self.in_neutral_air_left > 0:
+                self.hurtbox_alteration(self.neutral_air[(len(self.neutral_air) - 1) -
+                                                         self.in_neutral_air_left], (self.pos.x, self.pos.y - 25))
 
         # FORWARD TILT
         elif self.in_f_tilt > 0 or self.in_f_tilt_left > 0:
@@ -1907,14 +2013,19 @@ class PlayerStickman(pygame.sprite.Sprite):
                     self.in_jab_right = len(self.jab_right)
                 else:
                     self.in_jab_left = len(self.jab_left)
-            # else:
-            # NEUTRAL AIR ACTIVATION
+            else:
+                self.num_lag = len(self.neutral_air)
+                if self.direction:
+                    self.in_neutral_air_right = len(self.neutral_air)
+                else:
+                    self.in_neutral_air_left = len(self.neutral_air)
 
     def strong_attacks(self, strong_key):
         pressed_keys = pygame.key.get_pressed()
 
         if pressed_keys[strong_key] and not (self.in_lag or self.is_shielding) and self.on_ground or \
-                (pressed_keys[strong_key] and (self.in_f_strong_right > 0 or self.in_f_strong_left > 0) and self.num_rotations <= 4 and self.on_ground):
+                (pressed_keys[strong_key] and (
+                        self.in_f_strong_right > 0 or self.in_f_strong_left > 0) and self.num_rotations <= 4 and self.on_ground):
             if self.direction:
                 self.num_lag = 2
 
@@ -1955,25 +2066,30 @@ class PlayerStickman(pygame.sprite.Sprite):
         pressed_keys = pygame.key.get_pressed()
         shield_direction = None
 
-        if pressed_keys[shield_key] and self.on_ground and self.numHitstun == 0 and self.num_lag == 0 and self.frames_after_jump == 0:
+        if pressed_keys[
+            shield_key] and self.on_ground and self.numHitstun == 0 and self.num_lag == 0 and self.frames_after_jump == 0:
             self.is_shielding = True
             if pressed_keys[left_key]:
-                self.shield_size(15, 65, self.pos.x - 25, self.pos.y - 30, 30, 15, self.pos.x - 17, self.pos.y - 60, self.pos.y)
+                self.shield_size(15, 65, self.pos.x - 25, self.pos.y - 30, 30, 15, self.pos.x - 17, self.pos.y - 60,
+                                 self.pos.y)
                 self.vel.x = 0
                 self.direction = False
                 shield_direction = "Left"
             elif pressed_keys[right_key]:
-                self.shield_size(15, 65, self.pos.x + 25, self.pos.y - 30, 30, 15, self.pos.x + 18, self.pos.y - 60, self.pos.y)
+                self.shield_size(15, 65, self.pos.x + 25, self.pos.y - 30, 30, 15, self.pos.x + 18, self.pos.y - 60,
+                                 self.pos.y)
                 self.vel.x = 0
                 self.direction = True
                 shield_direction = "Right"
             else:
                 if self.direction:
-                    self.shield_size(15, 65, self.pos.x + 25, self.pos.y - 30, 30, 15, self.pos.x + 18, self.pos.y - 60, self.pos.y)
+                    self.shield_size(15, 65, self.pos.x + 25, self.pos.y - 30, 30, 15, self.pos.x + 18, self.pos.y - 60,
+                                     self.pos.y)
                     self.vel.x = 0
                     shield_direction = "Right"
                 else:
-                    self.shield_size(15, 65, self.pos.x - 25, self.pos.y - 30, 30, 15, self.pos.x - 17, self.pos.y - 60, self.pos.y)
+                    self.shield_size(15, 65, self.pos.x - 25, self.pos.y - 30, 30, 15, self.pos.x - 17, self.pos.y - 60,
+                                     self.pos.y)
                     self.vel.x = 0
                     shield_direction = "Left"
         else:
@@ -1983,7 +2099,9 @@ class PlayerStickman(pygame.sprite.Sprite):
         return shield_direction
 
     def createHit(self, activity_11, activity_22):
-        if self.num_active > 0 or self.num_active_d > 0 or self.num_active_f > 0 or self.num_active_u > 0 or self.num_active_u2 > 0 or self.num_active_b > 0 or self.num_active_fs > 0:
+        if self.num_active > 0 or self.num_active_d > 0 or self.num_active_f > 0 or self.num_active_u > 0\
+                or self.num_active_u2 > 0 or self.num_active_b > 0 or self.num_active_fs > 0 or self.num_active_n13 > 0 \
+                or self.num_active_n4 > 0:
             if self.numPlayer == 1:
                 activity_11 = True
                 return activity_11
@@ -2187,6 +2305,23 @@ class PlayerStickman(pygame.sprite.Sprite):
                         self.down_air_x, self.down_air_y, 0, 0, self.down_air_hitstun, self.down_air_dmg,
                         self.down_air_base,
                         self.down_air_scale)
+
+        elif self.num_active_n13 > 0:
+            if self.numPlayer == 1:
+                attack_attributes_1 = (self.neutral_air_13_x, self.neutral_air_13_y, 0, 0, self.neutral_air_13_hitstun,
+                                       self.neutral_air_13_dmg, self.neutral_air_13_base, self.neutral_air_13_scale)
+            else:
+                attack_attributes_2 = (self.neutral_air_13_x, self.neutral_air_13_y, 0, 0, self.neutral_air_13_hitstun,
+                                       self.neutral_air_13_dmg, self.neutral_air_13_base, self.neutral_air_13_scale)
+
+        elif self.num_active_n4 > 0:
+            if self.numPlayer == 1:
+                attack_attributes_1 = (self.neutral_air_4_x, self.neutral_air_4_y, 0, 0, self.neutral_air_4_hitstun,
+                                       self.neutral_air_4_dmg, self.neutral_air_4_base, self.neutral_air_4_scale)
+            else:
+                attack_attributes_2 = (self.neutral_air_4_x, self.neutral_air_4_y, 0, 0, self.neutral_air_4_hitstun,
+                                       self.neutral_air_4_dmg, self.neutral_air_4_base, self.neutral_air_4_scale)
+
         elif self.num_active_fs > 0:
             if self.numPlayer == 1:
                 if self.direction:
@@ -2232,7 +2367,8 @@ class PlayerStickman(pygame.sprite.Sprite):
                 self.hitbox_1 = False
                 self.hitbox_2 = False
 
-        elif (hits or hits3) and self.numPlayer == 1 and not hits2 and self.invincibility_frames <= 0:  # and activity_22:
+        elif (
+                hits or hits3) and self.numPlayer == 1 and not hits2 and self.invincibility_frames <= 0:  # and activity_22:
             self.take_knockback = True
             if hits:
                 self.hitbox_1 = True
