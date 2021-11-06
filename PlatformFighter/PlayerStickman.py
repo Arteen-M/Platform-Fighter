@@ -14,7 +14,7 @@ ACC = 0.5  # ACCELERATION (REMOVE MAYBE?)
 GROUND_FRIC = -0.12  # TRACTION
 AIR_FRIC = -0.12  # AIR DECELERATION
 
-
+# Play Sound Effects
 def playSFX(song, volume=0.3):
     pygame.mixer.music.load(song)
     pygame.mixer.music.play()
@@ -48,6 +48,7 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.groundACC = 0.6  # GROUNDED ACCELERATION
         self.airACC = 0.45  # AIR ACCELERATION
         self.jumpACC = -4.8  # JUMP ACCELERATION
+        # Cheat Code that allows you to play in "anti-gravity" mode
         if arteen_cheat:
             self.gravity = 0.17 * 5 / 3
             self.fall_speed = 3.7 * 50 / 3
@@ -58,6 +59,7 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         self.show_hitbox = show_hitbox
 
+        # LOAD SFXs
         self.sfxObj = pygame.mixer.Sound("../../PlatformFighter/MUSIC/HitSfX.wav")
         self.sfxObj.set_volume(1)
 
@@ -1018,7 +1020,7 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.charge_boost_ds = 0.0017
 
         # FLASH SETUP AND ATTRIBUTES
-        self.flash_percent = 100
+        self.flash_percent = 100  # START AT FULL (100%)
 
         self.flash_attack_right = ["../PlatformFighter/Stickman Character/Flash/Flash 0 Reverse.png",
                                    "../PlatformFighter/Stickman Character/Flash/Flash 0 Reverse.png",
@@ -1656,7 +1658,7 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.num_rotations = 0
         self.num_lag = 0  # SETS LAG (TYPE: STARTUP/ENDLAG)
         self.special_lag = 0  # SETS LAG (TYPE: SPECIAL FALL)
-        self.in_lag = False  # SETS LAG (TYPE: ALL)
+        self.in_lag = False  # SETS LAG (ALL PURPOSE)
         self.num_active = 0  # HITBOX FRAMES (JAB 1/2)
         self.num_active_b = 0  # HITBOX FRAMES (BACK AIR)
         self.num_active_n13 = 0  # HITBOX FRAMES (NAIR, 1-3)
@@ -1677,6 +1679,7 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.num_active_dsg = 0  # HITBOX FRAMES (DOWN SPECIAL/B, GROUND)
         self.num_active_dsa = 0  # HITBOX FRAMES (DOWN SPECIAL/B, AIR)
 
+        # FOR MOVE CANCELING
         self.hit = None
 
         self.numPlayer = numPlayer  # DEFINES YOUR PLAYER NUMBER
@@ -1724,16 +1727,6 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.shield_pos_x = 0
         self.shield_pos_y = 0
 
-        self.shield2_length = 0
-        self.shield2_height = 0
-        self.shield2_pos_x = 0
-        self.shield2_pos_y = 0
-
-        self.shield3_length = 0
-        self.shield3_height = 0
-        self.shield3_pos_x = 0
-        self.shield3_pos_y = 0
-
         self.stocks = stockNum  # SETS NUMBER OF STOCKS
         self.end = False  # SETS END OF GAME
         self.take_momentum = False  # SETS MOMENTUM (ACTIONABLE KNOCKBACK)
@@ -1778,9 +1771,10 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.hitbox_1 = False  # HITBOX (1) VARIABLE
         self.hitbox_2 = False  # HITBOX (2) VARIABLE
 
+        # FRAMES AFTER JUMP (WHEN TO START JUMPSQUAT)
         self.frames_after_jump = 0
-
-        self.counter = 0
+        
+        # COLLECTS INPUTS ON EACH FRAME (BUFFER SYSTEM)
         self.frame_inputs = None
         self.next_frame_inputs = None
 
@@ -1821,6 +1815,7 @@ class PlayerStickman(pygame.sprite.Sprite):
 
     # CHANGING HITBOX SIZE/ POSITION
     def hitbox_alteration(self, numBox, l, h, x, y):
+        # ACCOUNTS FOR DIFFERENT HITBOXES (Type 1, 2 or projectile (grab soon))
         if numBox == 1:
             self.hitbox_length = l
             self.hitbox_height = h
@@ -1858,18 +1853,12 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.shield_height = h
         self.shield_pos_x = x
         self.shield_pos_y = y
-        # self.shield2_length = l2
-        # self.shield2_height = h2
-        # self.shield2_pos_x = x2
-        # self.shield2_pos_y = y2
-        # self.shield3_length = l2
-        # self.shield3_height = h2
-        # self.shield3_pos_x = x2
-        # self.shield3_pos_y = y3
 
+    # THE MATHEMATICAL FORMULA FOR THE NUMBER OF HITSTOP FRAMES
     def find_hitstop(self, dmg, multiplyer):
         return math.floor(((dmg * 0.45) + 2) * multiplyer + 3)
 
+    # WHAT TO DO IN HITSTOP
     def hitstop_state(self):
         if self.in_hitstop > 0:
 
@@ -1882,6 +1871,7 @@ class PlayerStickman(pygame.sprite.Sprite):
                 self.vel.x = self.prev_vel_x
                 self.vel.y = self.prev_vel_y
 
+    # THE MATHEMATICAL FORMULA FOR KNOCKBACK
     def knockback_formula(self, angle):
         velocity = angle * (((((self.percentage / 10) + (self.percentage * (self.opponent_damage / 2) / 20) * (
                 (200 / (self.weight + 100)) * 1.4) + 18) * self.knockback_scale) + self.base_knockback))
@@ -1913,26 +1903,30 @@ class PlayerStickman(pygame.sprite.Sprite):
     def get_Jumps(self):
         return self.jumps
 
+    # CHECK IF YOU CAN OR HAVE DASHED
     def CheckDash(self, left_key, right_key, press_frames, press_frames_2):
         pressed_keys = pygame.key.get_pressed()
+        # DIRECTION
         if self.pressing_right:
             neg = 1
         else:
             neg = -1
 
+        # MAKE SURE THAT YOU'VE PRESSED THE KEY TWICE WITHIN ~6 FRAMES 
         if (pressed_keys[left_key] and 0 < press_frames <= 6) or (pressed_keys[right_key] and 0 < press_frames_2 <= 6):
             self.check_dash = True
+            # CANNOT BE IN LAG
             if not self.in_lag:
+                # IF YOU'RE ON THE GROUND AND NOT SLIDING BECAUSE OF AN ATTACK
                 if self.on_ground and not self.take_momentum:
-                    if neg > 0:  # and self.dash_wait <= 0:
-                        # self.dash_wait = 30
+                    if neg > 0:
                         self.vel.x = 12
                         self.vel.y = 0
-                    elif neg < 0:  # and self.dash_wait <= 0:
-                        # self.dash_wait = 30
+                    elif neg < 0:
                         self.vel.x = -12
                         self.vel.y = 0
                 else:
+                    # MOMENTUM CANCEL IN THE AIR
                     self.take_momentum = False
                     if neg > 0:
                         self.vel.x = 12
@@ -1959,46 +1953,6 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         return press_frames, press_frames_2
 
-    # WHEN TO DASH/ WHAT HAPPENS
-    def dash(self, press_frames):
-        if self.pressing_right:
-            neg = 1
-        else:
-            neg = -1
-
-        if 0 < press_frames <= 6:
-            if not self.in_lag:
-                if self.on_ground and not self.take_momentum:
-                    if neg > 0:  # and self.dash_wait <= 0:
-                        # self.dash_wait = 30
-                        self.vel.x = 12
-                        self.vel.y = 0
-                    elif neg < 0:  # and self.dash_wait <= 0:
-                        # self.dash_wait = 30
-                        self.vel.x = -12
-                        self.vel.y = 0
-                else:
-                    self.take_momentum = False
-                    if neg > 0:
-                        self.vel.x = 12
-                        self.vel.y = 0
-                        self.in_dash = 5
-                    elif neg < 0:
-                        self.vel.x = -12
-                        self.vel.y = 0
-                        self.in_dash = 5
-
-                press_frames = 7
-
-                # if neg > 0:
-                #    self.last_dash = True
-                # elif neg < 0:
-                #    self.last_dash = False
-
-        else:
-            press_frames = 7
-
-        return press_frames
 
     # WHEN YOU ARE IN ABSOLUTE LAG
     def inLag(self):
@@ -2007,7 +1961,7 @@ class PlayerStickman(pygame.sprite.Sprite):
         else:
             self.in_lag = False
 
-    # DI COMPONENT
+    # DI COMPONENT AFTER HITSTUN
     def momentumChange(self):
         if self.pressing_left or self.pressing_right:
             if self.numHitstun == 0 and self.take_momentum:
@@ -2023,7 +1977,7 @@ class PlayerStickman(pygame.sprite.Sprite):
         elif shield_dir == "Left":
             self.vel.x -= 0.5
 
-    # WHEN YOU ARE ON THE GROUND (AVOID REDUNDANT CODE)
+    # WHEN YOU ARE ON THE GROUND
     def groundCheck(self):
         if self.on_stage or self.on_platform:
             self.on_ground = True
@@ -2038,7 +1992,7 @@ class PlayerStickman(pygame.sprite.Sprite):
             self.numHitstun = 0
             self.take_momentum = False
 
-    # HALO PLATFORM INVINCIBILITY (AKA PLATFORM HITSTUN FOR SOME REASON)
+    # HALO PLATFORM DELAY (AKA PLATFORM HITSTUN)
     def platformHitstun(self):
         if self.platform_hitstun > 0:
             self.image = "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png"
@@ -2059,6 +2013,7 @@ class PlayerStickman(pygame.sprite.Sprite):
         if self.stocks == 0:
             self.end = True
 
+    # JUST SUBTRACT VALUES EVERY FRAME
     def lowerNumLag(self):
         if self.num_lag > 0:
             self.num_lag -= 1
@@ -2070,7 +2025,8 @@ class PlayerStickman(pygame.sprite.Sprite):
     def lowerShieldStun(self):
         if self.shieldstun > 0:
             self.shieldstun -= 1
-
+            
+    # CHECK FOR CANCELS
     def Current_Next_Action(self, press_left_key, press_right_key, press_up_key, press_down_key, attack_key):
         pressed_keys = pygame.key.get_pressed()
         if self.num_lag > 0:
@@ -2107,24 +2063,13 @@ class PlayerStickman(pygame.sprite.Sprite):
                 self.next_action = "FastFall"
             elif self.check_dash:
                 self.next_action = "Dash"
-            # else:
-            #    self.next_action = None
-        # else:
-        #    print("0")
 
+    # METER MECHANIC
     def flash(self, shield_key, strong_key):
 
-        #if self.flash_percent < 100:
-        #    self.counter += 1
-        #    self.flash_percent += 2.5 / 60
-        #else:
-        #    self.counter = 0
-
         pressed_keys = pygame.key.get_pressed()
-
-        #if self.counter == 60:
-        #    self.counter = 0
-
+        
+        # CHECK TO SEE IF YOU'RE ALLOWED TO USE THE DEFENSIVE MECHANIC
         if self.flash_percent >= 100 and not self.on_ground and (pressed_keys[shield_key] or self.airdodge_left_frames > 0 or self.airdodge_right_frames > 0) and pressed_keys[strong_key] and (self.num_lag <= 0 or self.airdodge_left_frames > 0 or self.airdodge_right_frames > 0):
             self.flash_percent = 0
             self.in_flash = len(self.flash_attack_right) - 1
@@ -2133,19 +2078,11 @@ class PlayerStickman(pygame.sprite.Sprite):
             self.airdodge_left_frames = 0
             self.airdodge_right_frames = 0
             self.airdodge_capable = True
+        # UPCOMING SUPER ATTACK MECHANIC
         # elif self.flash_percent >= 100 and not self.on_ground and pressed_keys[
         #     strong_key] and self.numHitstun <= 0 and self.num_lag <= 0:
         #     print("Super")
-
-    def press_check(self, attack_key, shield_key, strong_key, special_key):
-        pygame.event.set_allowed([QUIT, KEYDOWN])
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == KEYDOWN:
-                if event.key == attack_key or event.key == shield_key or event.key == strong_key or event.key == special_key:
-                    return True
+        
 
     # MOVING/ MOVEMENT FUNCTION (PLACE ALL MOVEMENT RELATED THINGS HERE)
     def move(self, player_key_left, player_key_right, player_key_down):
@@ -2155,7 +2092,6 @@ class PlayerStickman(pygame.sprite.Sprite):
                 and self.num_lag <= 0 and self.crouch_frames == 0 and self.in_jumpsquat == 0 and self.in_hitstop <= 0 \
                 and self.special_lag <= 0:
             # WHEN CAN YOU MOVE LEFT
-            # self.hurtbox_size_alteration((30, 50), (self.pos.x, self.pos.y - 27))
 
             if self.on_ground:  # GROUNDED MOVEMENT
 
@@ -2174,8 +2110,6 @@ class PlayerStickman(pygame.sprite.Sprite):
 
                 self.pressing_left = True  # PRESSING LEFT IS ALWAYS TRUE HERE
 
-                # self.press_left_frames = self.dash(self.press_left_frames)  # AWAITS DASH COMMAND
-
         elif pressed_keys[
             player_key_left] and not self.on_ground and self.platform_hitstun == 0 and self.in_hitstop <= 0 and self.special_lag <= 0:  # AIRBORNE MOVEMENT
 
@@ -2185,12 +2119,9 @@ class PlayerStickman(pygame.sprite.Sprite):
 
             self.pressing_left = True  # PRESSING LEFT IS ALWAYS TRUE HERE
 
-            # self.press_left_frames = self.dash(self.press_left_frames)  # AWAITS DASH COMMAND
-
         else:
             self.pressing_left = False  # IF YOU'RE NOT PRESSING LEFT
-            self.in_walk_cycle_left = 0  # END WALK CYCLE (MAYBE START IDLE CYCLE? IDLE CYCLE DEPENDANT ON PRESS OR
-            # ON ANIMATION)
+            self.in_walk_cycle_left = 0  # END WALK CYCLE (MAYBE START IDLE CYCLE? IDLE CYCLE DEPENDANT ON PRESS OR ON ANIMATION)
             # LOWERS PRESS FRAMES
             if self.press_left_frames > 0:
                 self.press_left_frames -= 1
@@ -2198,7 +2129,6 @@ class PlayerStickman(pygame.sprite.Sprite):
         if pressed_keys[player_key_right] and self.on_ground and self.platform_hitstun == 0 and not self.is_shielding \
                 and self.num_lag == 0 and self.crouch_frames == 0 and self.in_jumpsquat == 0 and self.in_hitstop <= 0 and self.special_lag <= 0:
             # WHEN YOU CAN MOVE RIGHT
-            # self.hurtbox_size_alteration((30, 50), (self.pos.x, self.pos.y - 27))
 
             if self.on_ground:  # GROUNDED MOVEMENT
 
@@ -2217,16 +2147,12 @@ class PlayerStickman(pygame.sprite.Sprite):
 
                 self.pressing_right = True  # PRESSING RIGHT IS ALWAYS TRUE HERE
 
-                # self.press_right_frames = self.dash(self.press_right_frames)  # AWAITS DASH COMMAND
-
         elif pressed_keys[
             player_key_right] and not self.on_ground and self.platform_hitstun == 0 and self.in_hitstop <= 0 and self.special_lag <= 0:  # AIRBORNE MOVEMENT
             self.acc.x += self.airACC  # AIR MOVEMENT
             self.in_walk_cycle_right = 0  # ENDS WALK CYCLE WHEN AIRBORNE
 
             self.pressing_right = True  # PRESSING RIGHT IS ALWAYS TRUE HERE
-
-            # self.press_right_frames = self.dash(self.press_right_frames)  # AWAITS DASH COMMAND
 
         else:
             self.pressing_right = False  # IF YOU'RE NOT PRESSING LEFT
@@ -2238,7 +2164,7 @@ class PlayerStickman(pygame.sprite.Sprite):
         if pressed_keys[
             player_key_down] and self.numHitstun == 0 and self.platform_hitstun == 0 and (
                 self.num_lag == 0 or not self.on_ground) and self.in_jumpsquat == 0 and self.special_lag <= 0:
-            # self.dash_wait = 0
+            # CROUCH CHECK
             if self.on_ground and self.crouch_frames < 2:
                 self.crouch_frames += 1
 
@@ -2287,8 +2213,6 @@ class PlayerStickman(pygame.sprite.Sprite):
         hitsPlatform = pygame.sprite.spritecollide(player, platforms, False)
         hitsUnderPlat = pygame.sprite.spritecollide(player, under_platforms, False)
         hitsShield = pygame.sprite.spritecollide(player, other_shield, False)
-
-        self.counter += 1
 
         self.press_left_check_frames, self.press_right_check_frames = self.CheckDash(left_key, right_key,
                                                                                      self.press_left_check_frames,
@@ -2356,32 +2280,6 @@ class PlayerStickman(pygame.sprite.Sprite):
             self.num_active_dsg = 0  # HITBOX FRAMES (DOWN SPECIAL/B, GROUND)
             self.num_active_dsa = 0  # HITBOX FRAMES (DOWN SPECIAL/B, AIR)
 
-            # if self.press_check(attack_key, shield_key, strong_key, special_key):
-            # self.in_jab_right = 0
-            # self.in_jab_left = 0
-
-            # self.in_f_tilt = 0
-            # self.in_f_tilt_left = 0
-
-            # self.in_down_tilt_right = 0
-            # self.in_down_tilt_left = 0
-
-            # self.in_up_tilt = 0
-
-            # self.in_f_air_right = 0
-            # self.in_f_air_left = 0
-
-            # self.in_down_air = 0
-
-            # self.in_up_air_right = 0
-            # self.in_up_air_left = 0
-
-            # self.in_back_air_right = 0
-            # self.in_back_air_left = 0
-
-            # self.in_neutral_air_right = 0
-            # self.in_neutral_air_left = 0
-
         if self.in_neutral_special_left > 0 or self.in_neutral_special_right > 0 or self.in_side_special_left > 0 or self.in_side_special_right > 0 or self.in_up_special_left > 0 or self.in_up_special_right > 0 or self.in_down_special_right > 0 or self.in_down_special_air_right > 0 or self.in_down_special_left > 0 or self.in_down_special_air_left > 0:
             self.in_special = True
         else:
@@ -2425,7 +2323,6 @@ class PlayerStickman(pygame.sprite.Sprite):
             self.vel.y = 0
             self.jumps = 5
             self.take_momentum = False
-            # self.knockback_frames = 0
         else:
             self.on_platform = False
 
@@ -2575,8 +2472,6 @@ class PlayerStickman(pygame.sprite.Sprite):
                 self.num_lag = 0
 
         elif self.in_jab_right > 0 or self.in_jab_left > 0:
-
-            # self.current_action = "Jab"
 
             if self.in_jab_right > 0:
                 if self.in_hitstop <= 0:
@@ -3108,8 +3003,6 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         elif self.in_down_special_right > 0 or self.in_down_special_left > 0:
             self.current_attack_attributes = self.down_special_ground_dmg
-            # time.sleep(1)
-            # print(self.in_down_special_right)
 
             if self.in_down_special_right > 0:
 
@@ -3145,7 +3038,6 @@ class PlayerStickman(pygame.sprite.Sprite):
                     self.hitbox_alteration(1, 0, 0, 0, 0)
 
         elif self.in_down_special_air_right > 0 or self.in_down_special_air_left > 0:
-            # time.sleep(1)
             if self.in_down_special_air_right > 0:
 
                 if self.in_hitstop <= 0:
@@ -3190,7 +3082,6 @@ class PlayerStickman(pygame.sprite.Sprite):
             self.hitbox_alteration(1, 0, 0, 0, 0)
             self.hitbox_alteration(2, 0, 0, 0, 0)
 
-        # THIS WHOLE KNOCKBACK SYSTEM NEEDS A REWORK
         if self.take_knockback or self.knockback_frames > 0:
 
             if self.hitbox_1:
@@ -3232,8 +3123,6 @@ class PlayerStickman(pygame.sprite.Sprite):
                 self.knockback_num_x = self.knockback_formula(component_x)
                 self.knockback_num_y = self.knockback_formula((-1 * component_y))
 
-            # print(self.knockback_frames, self.total_knockback, self.in_hitstop)
-
             if self.knockback_frames == (self.total_knockback - 1):
                 self.percentage += self.opponent_damage
                 if self.flash_percent <= 100 - self.opponent_damage * 2:
@@ -3243,7 +3132,6 @@ class PlayerStickman(pygame.sprite.Sprite):
 
             self.vel.x = self.knockback_num_x
             self.vel.y = self.knockback_num_y
-            # + (self.gravity * (self.total_knockback - self.knockback_frames))
 
             self.hitbox_alteration(1, 0, 0, 0, 0)
             self.hitbox_alteration(2, 0, 0, 0, 0)
@@ -3565,18 +3453,6 @@ class PlayerStickman(pygame.sprite.Sprite):
             else:
                 self.hurtbox_alteration(self.jump_left, (self.pos.x, self.pos.y - 50))
 
-        # if self.crouch_frames > 0 and not self.in_lag:
-        #   if self.direction:
-        #      self.hurtbox_alteration(self.crouch_right[(len(self.crouch_right) - 1) - self.crouch_frames],
-        #      self.hurtbox_alteration(self.crouch_right[(len(self.crouch_right) - 1) - self.crouch_frames],
-        #                             (self.pos.x, self.pos.y - 50))
-        # else:
-        #   self.hurtbox_alteration(self.crouch_left[(len(self.crouch_left) - 1) - self.crouch_frames],
-        #                          (self.pos.x, self.pos.y - 50))
-        # self.hurtbox_size_alteration((30, 40), (self.pos.x, self.pos.y - 22))
-
-        # self.hurtbox_alteration(self.image, (self.pos.x, self.pos.y - 50))
-        # self.hurtbox_size_alteration(self.size, (self.pos.x, self.pos.y - 27 + ((50 - self.size[1]) / 2)))
 
     def attack(self, attack_key, left_key, right_key, up_key, down_key):
         pressed_keys = pygame.key.get_pressed()
@@ -4287,15 +4163,7 @@ class PlayerStickman(pygame.sprite.Sprite):
                     self.flash_percent += self.current_attack_attributes * 0.5
                 else:
                     self.flash_percent = 100
-                # self.in_hitstop = self.find_hitstop(self.current_attack_attributes, 0.8)
-                # self.induce_shieldstun = self.in_hitstop
-                # print(self.in_hitstop)
-            # elif self.hitstop_counter == 2:
-            #    self.shieldSFX.stop()
             self.hit = True
-            # self.num_lag = 0
-            # self.in_down_special_left = 0
-            # self.in_down_special_right = 0
 
         elif not (self.take_knockback or self.knockback_frames > 0):
             self.hitstop_counter = 0
