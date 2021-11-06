@@ -11,13 +11,21 @@ pygame.mixer.init()
 HEIGHT = 600
 WIDTH = 800
 RED = (255, 0, 0)
+DARK_RED = (125, 0, 0)
+DARKER_RED = (75, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+DARK_BLUE = (0, 0, 200)
+BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
+GRAY = (125, 125, 125)
+DARK_GRAY = (125, 125, 150)
 
 FPS = 60
 FramePerSec = pygame.time.Clock()
 displaysurface = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Rarefield Brawlers")
-controlNames = ("Left Button", "Right Button", "Up Button", "Down Button", "Shield Button", "Attack Button", "Strong Button")
+controlNames = ("Left Button", "Right Button", "Up Button", "Down Button", "Shield Button", "Attack Button", "Strong Button", "Special Button")
 inputList = [K_TAB, K_CLEAR, K_RETURN, K_PAUSE, K_SPACE, K_QUOTE, K_MINUS,
              K_0, K_1, K_2, K_3, K_4, K_5, K_6, K_7, K_8, K_9, K_SEMICOLON, K_EQUALS, K_LEFTBRACKET,
              K_BACKSLASH, K_RIGHTBRACKET, K_BACKQUOTE, K_a, K_b, K_c, K_d, K_e, K_f, K_g, K_h, K_i, K_j, K_k,
@@ -42,18 +50,19 @@ def button(msg, x, y, w, h, ic, ac):
 
     else:
         pygame.draw.rect(displaysurface, ic, (x, y, w, h))
+    pygame.draw.rect(displaysurface, BLACK, (x, y, w, h), 1)
 
-    smallText = pygame.font.Font("freesansbold.ttf", 20)
-    textSurf, textRect = text_objects(msg, smallText, RED)
+    smallText = pygame.font.SysFont("mingliuextbpmingliuextbmingliuhkscsextb", 20)
+    textSurf, textRect = text_objects(msg, smallText, BLUE)
     textRect.center = ((x + (w / 2)), (y + (h / 2)))
     displaysurface.blit(textSurf, textRect)
 
 
 def controlMenu(player1keys=None, player2keys=None):
     if player1keys is None:
-        player1keys = [K_LEFT, K_RIGHT, K_UP, K_DOWN, K_k, K_j, K_l]
+        player1keys = [K_LEFT, K_RIGHT, K_UP, K_DOWN, K_k, K_j, K_l, K_h]
     if player2keys is None:
-        player2keys = [K_a, K_d, K_w, K_s, K_e, K_f, K_r]
+        player2keys = [K_a, K_d, K_w, K_s, K_e, K_f, K_r, K_q]
     player1KeyNames = []
     player2KeyNames = []
     for x in range(len(player1keys)):
@@ -63,7 +72,7 @@ def controlMenu(player1keys=None, player2keys=None):
     def controlChange(controlName, controlColour, playerNum, player1Controls, player2Controls, player1ControlNames,
                       player2ControlNames):
 
-        smallerText = pygame.font.Font('freesansbold.ttf', 20)
+        smallerText = pygame.font.SysFont('mingliuextbpmingliuextbmingliuhkscsextb', 20)
 
         shade = pygame.Surface((WIDTH, HEIGHT))
         shade.fill(controlColour)
@@ -107,19 +116,20 @@ def controlMenu(player1keys=None, player2keys=None):
                 pygame.quit()
                 sys.exit()
 
-        displaysurface.fill((0, 0, 0))
-        largeText = pygame.font.Font('freesansbold.ttf', 40)
+        displaysurface.fill(GRAY)
+        largeText = pygame.font.SysFont('mingliuextbpmingliuextbmingliuhkscsextb', 40)
 
-        Textsurf, Textrect = text_objects("Player 1 controls", largeText, RED)
+        Textsurf, Textrect = text_objects("Player 1 controls", largeText, BLUE)
         Textrect.center = (220, 75)
 
-        up_button1 = button("%s" % player1KeyNames[2].upper(), 140, 135, 70, 70, (125, 0, 0), (75, 0, 0))
-        down_button1 = button("%s" % player1KeyNames[3].upper(), 140, 215, 70, 70, (125, 0, 0), (75, 0, 0))
-        left_button1 = button("%s" % player1KeyNames[0].upper(), 60, 215, 70, 70, (125, 0, 0), (75, 0, 0))
-        right_button1 = button("%s" % player1KeyNames[1].upper(), 220, 215, 70, 70, (125, 0, 0), (75, 0, 0))
-        shield_button1 = button("%s" % player1KeyNames[4].upper(), 240, 125, 70, 70, (125, 0, 0), (75, 0, 0))
-        attack_button1 = button("%s" % player1KeyNames[5].upper(), 320, 125, 70, 70, (125, 0, 0), (75, 0, 0))
-        strong_button1 = button("%s" % player1KeyNames[6].upper(), 320, 205, 70, 70, (125, 0, 0), (75, 0, 0))
+        up_button1 = button("%s" % player1KeyNames[2].upper(), 140, 135, 70, 70, WHITE, DARK_GRAY)
+        down_button1 = button("%s" % player1KeyNames[3].upper(), 140, 215, 70, 70, WHITE, DARK_GRAY)
+        left_button1 = button("%s" % player1KeyNames[0].upper(), 60, 215, 70, 70, WHITE, DARK_GRAY)
+        right_button1 = button("%s" % player1KeyNames[1].upper(), 220, 215, 70, 70, WHITE, DARK_GRAY)
+        shield_button1 = button("%s" % player1KeyNames[4].upper(), 240, 125, 70, 70, WHITE, DARK_GRAY)
+        attack_button1 = button("%s" % player1KeyNames[5].upper(), 320, 125, 70, 70, WHITE, DARK_GRAY)
+        strong_button1 = button("%s" % player1KeyNames[6].upper(), 320, 205, 70, 70, WHITE, DARK_GRAY)
+        special_button1 = button("%s" % player1KeyNames[7].upper(), 40, 125, 70, 70, WHITE, DARK_GRAY)
 
         if up_button1:
             controlChange("Up Button", (125, 125, 125), 1, player1keys, player2keys, player1KeyNames, player2KeyNames)
@@ -139,17 +149,21 @@ def controlMenu(player1keys=None, player2keys=None):
         elif strong_button1:
             controlChange("Strong Button", (125, 125, 125), 1, player1keys, player2keys, player1KeyNames,
                           player2KeyNames)
+        elif special_button1:
+            controlChange("Special Button", (125, 125, 125), 1, player1keys, player2keys, player1KeyNames,
+                          player2KeyNames)
 
-        Textsurf2, Textrect2 = text_objects("Player 2 controls", largeText, WHITE)
+        Textsurf2, Textrect2 = text_objects("Player 2 controls", largeText, RED)
         Textrect2.center = (580, 75)
 
-        up_button2 = button("%s" % player2KeyNames[2].upper(), 500, 135, 70, 70, (255, 255, 255), (125, 125, 125))
-        down_button2 = button("%s" % player2KeyNames[3].upper(), 500, 215, 70, 70, (255, 255, 255), (125, 125, 125))
-        left_button2 = button("%s" % player2KeyNames[0].upper(), 420, 215, 70, 70, (255, 255, 255), (125, 125, 125))
-        right_button2 = button("%s" % player2KeyNames[1].upper(), 580, 215, 70, 70, (255, 255, 255), (125, 125, 125))
-        shield_button2 = button("%s" % player2KeyNames[4].upper(), 600, 125, 70, 70, (255, 255, 255), (125, 125, 125))
-        attack_button2 = button("%s" % player2KeyNames[5].upper(), 680, 125, 70, 70, (255, 255, 255), (125, 125, 125))
-        strong_button2 = button("%s" % player2KeyNames[6].upper(), 680, 205, 70, 70, (255, 255, 255), (125, 125, 125))
+        up_button2 = button("%s" % player2KeyNames[2].upper(), 500, 135, 70, 70, DARK_RED, DARKER_RED)
+        down_button2 = button("%s" % player2KeyNames[3].upper(), 500, 215, 70, 70, DARK_RED, DARKER_RED)
+        left_button2 = button("%s" % player2KeyNames[0].upper(), 420, 215, 70, 70, DARK_RED, DARKER_RED)
+        right_button2 = button("%s" % player2KeyNames[1].upper(), 580, 215, 70, 70, DARK_RED, DARKER_RED)
+        shield_button2 = button("%s" % player2KeyNames[4].upper(), 600, 125, 70, 70, DARK_RED, DARKER_RED)
+        attack_button2 = button("%s" % player2KeyNames[5].upper(), 680, 125, 70, 70, DARK_RED, DARKER_RED)
+        strong_button2 = button("%s" % player2KeyNames[6].upper(), 680, 205, 70, 70, DARK_RED, DARKER_RED)
+        special_button2 = button("%s" % player2KeyNames[7].upper(), 400, 125, 70, 70, DARK_RED, DARKER_RED)
 
         if up_button2:
             controlChange("Up Button", (75, 0, 0), 2, player1keys, player2keys, player1KeyNames, player2KeyNames)
@@ -165,8 +179,10 @@ def controlMenu(player1keys=None, player2keys=None):
             controlChange("Attack Button", (75, 0, 0), 2, player1keys, player2keys, player1KeyNames, player2KeyNames)
         elif strong_button2:
             controlChange("Strong Button", (75, 0, 0), 2, player1keys, player2keys, player1KeyNames, player2KeyNames)
+        elif special_button2:
+            controlChange("Special Button", (75, 0, 0), 2, player1keys, player2keys, player1KeyNames, player2KeyNames)
 
-        back_button = button("Back", 0, 0, 50, 50, (0, 255, 255), (0, 255, 0))
+        back_button = button("Back", 0, 0, 50, 50, (0, 255, 255), GREEN)
 
         if back_button:
             return player1keys, player2keys
