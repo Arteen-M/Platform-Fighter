@@ -8,7 +8,7 @@ Open the setup.py file (be sure to place it outside the PlatformFighter folder w
 
 Place a copy of the main file (Fighter.py) in the same folder as the setup.py file and rename it to whatever version it is
 
-In the setup.py file, change the file name within the cx_Freeze.Executable function
+In the setup.py file, change the file name within the cx_Freeze.Executable function to match the actual file name
 
 Change the name and version inside the cx_Freeze.setup function
 
