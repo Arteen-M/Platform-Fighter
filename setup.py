@@ -11,7 +11,7 @@ cx_Freeze.setup(
     name="PlatformFighter",
     version="1.0.7",
     options={"build_exe": build_exe_options},
-    executables=[cx_Freeze.Executable("Ver_7.py", base=base)]
+    executables=[cx_Freeze.Executable("Fighter.py", base=base)]
 )
 
 # python setup.py build
