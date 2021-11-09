@@ -21,7 +21,7 @@ DARK_GRAY = (125, 125, 150)
 FPS = 60
 FramePerSec = pygame.time.Clock()
 displaysurface = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Rarefield Brawlers")
+pygame.display.set_caption("Platform Fighter")
 
 
 def text_objects(text, font, colour):
