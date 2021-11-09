@@ -31,7 +31,7 @@ DARK_GRAY = (125, 125, 150)
 FPS = 60
 FramePerSec = pygame.time.Clock()
 displaysurface = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("PlatformFighter")
+pygame.display.set_caption("Platform Fighter")
 attack_angle_1 = ()
 attack_angle_2 = ()
 hitbox_on_off = False
