@@ -18,6 +18,6 @@ Run, in Command Prompt, python setup.py build, as commented in the setup.py file
 
 The Build folder will be created, and inside is the exe file
 
-Copy and place the rest of the files and folders (Stickman Character, MUSIC and STAGES folders; Character_Select, Controls, PlayerStickman and Start_Screen files)
+Copy and place the rest of the files and folders (Stickman Character, MUSIC and STAGES folders; Character_Select, Controls, PlayerStickman and Start_Screen files) within the PlatformFighter Folder
 
 Don't rename any of the folders or files except for the build folder, or you can move the PlatformFighter folder out of the build folder entierly
