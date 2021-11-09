@@ -24,7 +24,7 @@ DARK_GRAY = (125, 125, 150)
 FPS = 60
 FramePerSec = pygame.time.Clock()
 displaysurface = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("PlatformFighter")
+pygame.display.set_caption("Platform Fighter")
 controlNames = ("Left Button", "Right Button", "Up Button", "Down Button", "Shield Button", "Attack Button", "Strong Button", "Special Button")
 inputList = [K_TAB, K_CLEAR, K_RETURN, K_PAUSE, K_SPACE, K_QUOTE, K_MINUS,
              K_0, K_1, K_2, K_3, K_4, K_5, K_6, K_7, K_8, K_9, K_SEMICOLON, K_EQUALS, K_LEFTBRACKET,
