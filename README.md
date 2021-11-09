@@ -10,7 +10,7 @@ Place a copy of the main file (Fighter.py) in the same folder as the setup.py fi
 
 In the setup.py file, change the file name within the cx_Freeze.Executable function to match the actual file name
 
-Change the name and version inside the cx_Freeze.setup function
+Change the name and version variables to what the name and version are
 
 Open the Command Prompt within that folder
 
