@@ -1,4 +1,4 @@
-# Platform-Fighter
+# Platform Fighter
 
 Instructions on how to export this game into an EXE file:
 
