@@ -31,7 +31,9 @@ DARK_GRAY = (125, 125, 150)
 FPS = 60
 FramePerSec = pygame.time.Clock()
 displaysurface = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Platform Fighter")
+pygame.display.set_caption("PlatformFighter")
+# pygame.display.toggle_fullscreen()
+
 attack_angle_1 = ()
 attack_angle_2 = ()
 hitbox_on_off = False
@@ -59,8 +61,12 @@ class Percent(pygame.sprite.Sprite):
         self.textRect = 0
         if self.numPlayer == 1:
             self.colour = BLUE
+            # self.text = self.font.render(self.display, True, self.colour, (0, 0, 0))
+            # self.textRect = self.text.get_rect(center=(675, 550))
         else:
             self.colour = RED
+            # self.text = self.font.render(self.display, True, self.colour, (0, 0, 0))
+            # self.textRect = self.text.get_rect(center=(125, 550))
 
     def update(self, damage):
         self.display = str(damage) + "%"
@@ -93,10 +99,13 @@ class timerClass:
             self.display = "%d:0%d" % ((self.timer - self.minutes - 1), (60 - self.seconds))
         else:
             self.display = "%d:%d" % ((self.timer - self.minutes - 1), (60 - self.seconds))
+        # self.text = self.font.render(self.display, True, self.colour, (0, 0, 0))
+        # self.textRect = self.text.get_rect(center=(WIDTH - 100, 100))
 
         Text = pygame.font.SysFont("mingliuextbpmingliuextbmingliuhkscsextb", 50)
         self.textSurf, self.textRect = text_objects(self.display, Text, BLACK)
         self.textRect.center = (WIDTH - 100, 100)
+        # displaysurface.blit(self.textSurf, self.textRect)
 
         self.counter += 1
 
@@ -264,6 +273,14 @@ def text_objects(text, font, colour):
     return textSurface, textSurface.get_rect()
 
 
+# def stockGraphicSquare(numStocks, numPlayer):
+#   for i in range(numStocks):
+#      if numPlayer == 1:
+#         pygame.draw.rect(displaysurface, BLUE, (100 + (i * 10), 520, 20, 10))
+#    else:
+#       pygame.draw.rect(displaysurface, WHITE, (675 - (i * 10), 520, 20, 10))
+
+
 def stockGraphicStick(numStocks, numPlayer, img):
     for i in range(numStocks):
         if numPlayer == 1:
@@ -276,7 +293,31 @@ def playMusic(song, repeat=-1, start=0, volume=0.3):
     pygame.mixer.music.load(song)
     pygame.mixer.music.play(repeat, start=start)
     pygame.mixer.music.set_volume(volume)
-    
+
+
+# def startScreen():
+#   intro = True
+#
+#   while intro:
+#      for event in pygame.event.get():
+#         if event.type == pygame.QUIT:
+#            pygame.quit()
+#           sys.exit()
+#      if event.type == KEYDOWN:
+#         if event.key == K_SPACE:
+#            intro = False
+
+#        displaysurface.fill((0, 0, 0))
+#       largeText = pygame.font.Font('freesansbold.ttf', 90)
+#      smallText = pygame.font.Font("freesansbold.ttf", 45)
+#     TextSurf, TextRect = text_objects("PlatformFighter", largeText, BLUE)  # Rarefield Brawlers
+#    smallTextSurf, smallTextRect = text_objects("Press Space to Start", smallText, BLUE)
+#   TextRect.center = ((WIDTH / 2), (HEIGHT / 2))
+#  smallTextRect.center = ((WIDTH / 2), (HEIGHT / 2 + 100))
+# displaysurface.blit(TextSurf, TextRect)
+#        displaysurface.blit(smallTextSurf, smallTextRect)
+#       pygame.display.update()
+#      FramePerSec.tick(FPS)
 
 def pause():
     escape = True
@@ -298,6 +339,195 @@ def pause():
         pygame.display.update()
         FramePerSec.tick(30)
 
+
+# def charSelect(hitbox_toggle=False):
+#   player1_chosen = False
+#  char_tuple = []
+#
+#   while True:
+#      for event in pygame.event.get():
+#         if event.type == pygame.QUIT:
+#            pygame.quit()
+#           sys.exit()
+#
+#       displaysurface.fill((0, 0, 0))
+#
+#       control_button = button("Controls", (WIDTH - 125), 25, 100, 50, WHITE, DARK_GRAY)
+#      option_button = button("Options", 25, 25, 100, 50, WHITE, DARK_GRAY)
+#
+#       if hitbox_toggle:
+#          hitbox_display = button("ON", 75, 525, 50, 50, WHITE, DARK_GRAY)
+#
+#           if hitbox_display:
+#              hitbox_toggle = False
+#             time.sleep(0.25)
+#    else:
+#       hitbox_display = button("OFF", 75, 525, 50, 50, WHITE, DARK_GRAY)
+#
+#           if hitbox_display:
+#              hitbox_toggle = True
+#             time.sleep(0.25)
+#
+#       if control_button:
+#          return "Controls"
+#     elif option_button:
+#        return "Options"
+#
+#       largeText = pygame.font.Font('freesansbold.ttf', 30)
+#
+#       hitboxSurf, hitboxRect = text_objects("Show Hitbox", largeText, BLUE)
+#      hitboxRect.center = (100, 500)
+#
+#       stick_select = button("Stickman", (2 * WIDTH / 3), (2 * HEIGHT / 3), 100, 50, WHITE, DARK_GRAY)
+#
+#       if stick_select and not player1_chosen:
+#          player1_chosen = True
+#         stick_select = False
+#        char_tuple.append("Stickman")
+#       time.sleep(0.25)
+#
+#       if stick_select and player1_chosen:
+#          char_tuple.append("Stickman")
+#         time.sleep(0.25)
+#        return char_tuple, hitbox_toggle
+#
+#       if player1_chosen:
+#          TextSurf, TextRect = text_objects("Player 2: Choose your character", largeText, WHITE)
+#         TextRect.center = ((WIDTH / 3 + 125), 55)
+#    else:
+#       TextSurf, TextRect = text_objects("Player 1: Choose your character", largeText, BLUE)
+#      TextRect.center = ((WIDTH / 3 + 125), 55)
+#
+#       if len(char_tuple) == 2:
+#          return char_tuple, hitbox_toggle
+#
+#       displaysurface.blit(TextSurf, TextRect)
+#      displaysurface.blit(hitboxSurf, hitboxRect)
+#
+#       pygame.display.update()
+#      FramePerSec.tick(60)
+
+
+# def controlMenu(player1keys=None, player2keys=None):
+#   if player1keys is None:
+#      player1keys = [K_LEFT, K_RIGHT, K_UP, K_DOWN, K_COMMA, K_PERIOD]
+# if player2keys is None:
+#    player2keys = [K_a, K_d, K_w, K_s, K_e, K_f]
+# player1KeyNames = []
+# player2KeyNames = []
+# for x in range(len(player1keys)):
+#   player1KeyNames.append(pygame.key.name(player1keys[x]))
+#  player2KeyNames.append(pygame.key.name(player2keys[x]))
+
+# def controlChange(controlName, controlColour, playerNum, player1Controls, player2Controls, player1ControlNames,
+#                 player2ControlNames):
+#
+#       smallerText = pygame.font.Font('freesansbold.ttf', 20)
+#
+#       shade = pygame.Surface((WIDTH, HEIGHT))
+#      shade.fill(controlColour)
+#     shade.set_alpha(10)
+#    shaderect = shade.get_rect()
+#
+#       TextDisplay, TextDisplayrect = text_objects(("Change %s controls?" % controlName), smallerText, (200, 200, 200))
+#      TextDisplayrect.center = ((WIDTH / 2), (HEIGHT / 2))
+#
+#       while True:
+#
+#           for event in pygame.event.get():
+#              if event.type == pygame.QUIT:
+#                 pygame.quit()
+#                sys.exit()
+#           if event.type == KEYDOWN:
+#              for x in range(len(inputList) - 1):
+#                 pressed_keys = pygame.key.get_pressed()
+#                if pressed_keys[inputList[x]]:
+#                   for i in range(len(controlNames)):
+#                      if controlName == controlNames[i]:
+#                         if playerNum == 1 and (inputList[x] not in player1Controls) and (
+#                                inputList[x] not in player2Controls):
+#                           player1Controls[i] = inputList[x]
+#                          player1ControlNames[i] = pygame.key.name(inputList[x])
+#                     elif playerNum == 2 and (inputList[x] not in player1Controls) and (
+#                            inputList[x] not in player2Controls):
+#                       player2Controls[i] = inputList[x]
+#                      player2ControlNames[i] = pygame.key.name(inputList[x])
+#
+#                   return player1Controls, player2Controls, player1ControlNames, player2ControlNames
+#
+#           displaysurface.blit(TextDisplay, TextDisplayrect)
+#          displaysurface.blit(shade, shaderect)
+#         pygame.display.update()
+#        FramePerSec.tick(60)
+#
+#   while True:
+#      for event in pygame.event.get():
+#         if event.type == pygame.QUIT:
+#            pygame.quit()
+#           sys.exit()
+#
+#       displaysurface.fill((0, 0, 0))
+#      largeText = pygame.font.Font('freesansbold.ttf', 40)
+#
+#       Textsurf, Textrect = text_objects("Player 1 controls", largeText, BLUE)
+#      Textrect.center = (220, 75)
+#
+#       up_button1 = button("%s" % player1KeyNames[2].upper(), 140, 135, 70, 70, (125, 0, 0), (75, 0, 0))
+#      down_button1 = button("%s" % player1KeyNames[3].upper(), 140, 215, 70, 70, (125, 0, 0), (75, 0, 0))
+#     left_button1 = button("%s" % player1KeyNames[0].upper(), 60, 215, 70, 70, (125, 0, 0), (75, 0, 0))
+#    right_button1 = button("%s" % player1KeyNames[1].upper(), 220, 215, 70, 70, (125, 0, 0), (75, 0, 0))
+#   shield_button1 = button("%s" % player1KeyNames[4].upper(), 240, 125, 70, 70, (125, 0, 0), (75, 0, 0))
+#  attack_button1 = button("%s" % player1KeyNames[5].upper(), 320, 125, 70, 70, (125, 0, 0), (75, 0, 0))
+#
+#       if up_button1:
+#          controlChange("Up Button", (125, 125, 125), 1, player1keys, player2keys, player1KeyNames, player2KeyNames)
+#     elif down_button1:
+#        controlChange("Down Button", (125, 125, 125), 1, player1keys, player2keys, player1KeyNames, player2KeyNames)
+#   elif left_button1:
+#      controlChange("Left Button", (125, 125, 125), 1, player1keys, player2keys, player1KeyNames, player2KeyNames)
+# elif right_button1:
+#    controlChange("Right Button", (125, 125, 125), 1, player1keys, player2keys, player1KeyNames,
+#                 player2KeyNames)
+# elif shield_button1:
+#   controlChange("Shield Button", (125, 125, 125), 1, player1keys, player2keys, player1KeyNames,
+#                player2KeyNames)
+# elif attack_button1:
+#   controlChange("Attack Button", (125, 125, 125), 1, player1keys, player2keys, player1KeyNames,
+#                player2KeyNames)
+#
+#       Textsurf2, Textrect2 = text_objects("Player 2 controls", largeText, WHITE)
+#      Textrect2.center = (580, 75)
+#
+#       up_button2 = button("%s" % player2KeyNames[2].upper(), 500, 135, 70, 70, (255, 255, 255), (125, 125, 125))
+#      down_button2 = button("%s" % player2KeyNames[3].upper(), 500, 215, 70, 70, (255, 255, 255), (125, 125, 125))
+#     left_button2 = button("%s" % player2KeyNames[0].upper(), 420, 215, 70, 70, (255, 255, 255), (125, 125, 125))
+#    right_button2 = button("%s" % player2KeyNames[1].upper(), 580, 215, 70, 70, (255, 255, 255), (125, 125, 125))
+#   shield_button2 = button("%s" % player2KeyNames[4].upper(), 600, 125, 70, 70, (255, 255, 255), (125, 125, 125))
+#  attack_button2 = button("%s" % player2KeyNames[5].upper(), 680, 125, 70, 70, (255, 255, 255), (125, 125, 125))
+#
+#       if up_button2:
+#          controlChange("Up Button", (75, 0, 0), 2, player1keys, player2keys, player1KeyNames, player2KeyNames)
+#     elif down_button2:
+#        controlChange("Down Button", (75, 0, 0), 2, player1keys, player2keys, player1KeyNames, player2KeyNames)
+#   elif left_button2:
+#      controlChange("Left Button", (75, 0, 0), 2, player1keys, player2keys, player1KeyNames, player2KeyNames)
+# elif right_button2:
+#    controlChange("Right Button", (75, 0, 0), 2, player1keys, player2keys, player1KeyNames, player2KeyNames)
+# elif shield_button2:
+#   controlChange("Shield Button", (75, 0, 0), 2, player1keys, player2keys, player1KeyNames, player2KeyNames)
+# elif attack_button2:
+#   controlChange("Attack Button", (75, 0, 0), 2, player1keys, player2keys, player1KeyNames, player2KeyNames)
+#
+#       back_button = button("Back", 0, 0, 50, 50, WHITE, DARK_GRAY)
+#
+#       if back_button:
+#          return player1keys, player2keys
+#
+#       displaysurface.blit(Textsurf, Textrect)
+#      displaysurface.blit(Textsurf2, Textrect2)
+#
+#       pygame.display.update()
+#      FramePerSec.tick(30)
 
 slider = Slider(150, 500, 500, 10, "Music Volume")
 
@@ -383,6 +613,10 @@ def main(attack_angle_1, attack_angle_2, P1, P2, P1Char, P2Char, player1Left, pl
          player2Up, player2Down, player2Shield, player2Attack, player2Strong, player2Special, song, song_volume):
     playMusic(song, volume=song_volume)
 
+    # soundObj = pygame.mixer.Sound(song)
+    # soundObj.play(-1)
+    # soundObj.set_volume(song_volume)
+
     Stage_image.update('../PlatformFighter/Stages/Training2.png', (WIDTH / 2, HEIGHT / 2))
 
     pygame.event.set_allowed([QUIT, KEYDOWN])
@@ -392,31 +626,39 @@ def main(attack_angle_1, attack_angle_2, P1, P2, P1Char, P2Char, player1Left, pl
 
     counter = 0
 
+    player_1_buffer = [None, None, 0]
+    player_2_buffer = [None, None, 0]
+
     while not (P1.end or P2.end):
+        # start_time = time.time()
 
         counter += 1
 
         pressed_keys = pygame.key.get_pressed()
-        P1.frame_inputs = ""
+        player_1_buffer = ""
         if pressed_keys[player1Left]:
-            P1.frame_inputs += "Left"
+            player_1_buffer += "Left"
         if pressed_keys[player1Right]:
-            P1.frame_inputs += "Right"
+            player_1_buffer += "Right"
         if pressed_keys[player1Up]:
-            P1.frame_inputs += "Up"
+            player_1_buffer += "Up"
         if pressed_keys[player1Down]:
-            P1.frame_inputs += "Down"
+            player_1_buffer += "Down"
+        if not (pressed_keys[player1Left] or pressed_keys[player1Right] or pressed_keys[player1Up] or pressed_keys[player1Down]):
+            player_1_buffer += "None"
 
         pressed_keys = pygame.key.get_pressed()
-        P2.frame_inputs = ""
+        player_2_buffer = ""
         if pressed_keys[player2Left]:
-            P2.frame_inputs += "Left"
+            player_2_buffer += "Left"
         if pressed_keys[player2Right]:
-            P2.frame_inputs += "Right"
+            player_2_buffer += "Right"
         if pressed_keys[player2Up]:
-            P2.frame_inputs += "Up"
+            player_2_buffer += "Up"
         if pressed_keys[player2Down]:
-            P2.frame_inputs += "Down"
+            player_2_buffer += "Down"
+        if not (pressed_keys[player2Left] or pressed_keys[player2Right] or pressed_keys[player2Up] or pressed_keys[player2Down]):
+            player_2_buffer += "None"
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -436,100 +678,105 @@ def main(attack_angle_1, attack_angle_2, P1, P2, P1Char, P2Char, player1Left, pl
                     P2.try_jump = False
 
                 if event.key == player1Attack:
-                    P1.frame_inputs += "Attack "
+                    player_1_buffer += "Attack "
                 if event.key == player2Attack:
-                    P2.frame_inputs += "Attack "
+                    player_2_buffer += "Attack "
                 if event.key == player1Strong:
-                    P1.frame_inputs += "Strong "
+                    player_1_buffer += "Strong "
                 if event.key == player2Strong:
-                    P2.frame_inputs += "Strong "
+                    player_2_buffer += "Strong "
                 if event.key == player1Special:
-                    P1.frame_inputs += "Special "
+                    player_1_buffer += "Special "
                 if event.key == player2Special:
-                    P2.frame_inputs += "Special "
+                    player_2_buffer += "Special "
                 if event.key == K_ESCAPE:
                     pause()
 
-        P1.frame_inputs += " %d" % counter
-        if P1.frame_inputs != (" %d" % counter):
-            print(P1.frame_inputs)
-            if "Attack" in P1.frame_inputs and "Strong" in P1.frame_inputs:
-                P1.frame_inputs = ["Super", None]
-            elif "Special" in P1.frame_inputs:
-                if "Left" in P1.frame_inputs:
-                    P1.frame_inputs = ["Special", "Left"]
-                elif "Right" in P1.frame_inputs:
-                    P1.frame_inputs = ["Special", "Right"]
-                elif "Up" in P1.frame_inputs:
-                    P1.frame_inputs = ["Special", "Up"]
-                elif "Down" in P1.frame_inputs:
-                    P1.frame_inputs = ["Special", "Down"]
-                else:
-                    P1.frame_inputs = ["Special", None]
-            elif "Attack" in P1.frame_inputs:
-                if "Left" in P1.frame_inputs:
-                    P1.frame_inputs = ["Attack", "Left"]
-                elif "Right" in P1.frame_inputs:
-                    P1.frame_inputs = ["Attack", "Right"]
-                elif "Up" in P1.frame_inputs:
-                    P1.frame_inputs = ["Attack", "Up"]
-                elif "Down" in P1.frame_inputs:
-                    P1.frame_inputs = ["Attack", "Down"]
-                else:
-                    P1.frame_inputs = ["Attack", None]
-            elif "Strong" in P1.frame_inputs:
-                if "Left" in P1.frame_inputs:
-                    P1.frame_inputs = ["Strong", "Left"]
-                elif "Right" in P1.frame_inputs:
-                    P1.frame_inputs = ["Strong", "Right"]
-                elif "Up" in P1.frame_inputs:
-                    P1.frame_inputs = ["Strong", "Up"]
-                elif "Down" in P1.frame_inputs:
-                    P1.frame_inputs = ["Strong", "Down"]
-                else:
-                    P1.frame_inputs = ["Strong", None]
-            print(P1.frame_inputs)
+        player_1_buffer += " %d" % counter
+        if player_1_buffer != (" %d" % counter):
+            if "Attack" in player_1_buffer and "Strong" in player_1_buffer:
+                P1.frame_inputs = ["Super", None, counter]
+            elif "Special" in player_1_buffer:
+                if "Left" in player_1_buffer:
+                    P1.frame_inputs = ["Special", "Left", counter]
+                elif "Right" in player_1_buffer:
+                    P1.frame_inputs = ["Special", "Right", counter]
+                elif "Up" in player_1_buffer:
+                    P1.frame_inputs = ["Special", "Up", counter]
+                elif "Down" in player_1_buffer:
+                    P1.frame_inputs = ["Special", "Down", counter]
+                elif "None" in player_1_buffer:
+                    P1.frame_inputs = ["Special", None, counter]
+            elif "Attack" in player_1_buffer:
+                if "Left" in player_1_buffer:
+                    P1.frame_inputs = ["Attack", "Left", counter]
+                elif "Right" in player_1_buffer:
+                    P1.frame_inputs = ["Attack", "Right", counter]
+                elif "Up" in player_1_buffer:
+                    P1.frame_inputs = ["Attack", "Up", counter]
+                elif "Down" in player_1_buffer:
+                    P1.frame_inputs = ["Attack", "Down", counter]
+                elif "None" in player_1_buffer:
+                    P1.frame_inputs = ["Attack", None, counter]
+            elif "Strong" in player_1_buffer:
+                if "Left" in player_1_buffer:
+                    P1.frame_inputs = ["Strong", "Left", counter]
+                elif "Right" in player_1_buffer:
+                    P1.frame_inputs = ["Strong", "Right", counter]
+                elif "Up" in player_1_buffer:
+                    P1.frame_inputs = ["Strong", "Up", counter]
+                elif "Down" in player_1_buffer:
+                    P1.frame_inputs = ["Strong", "Down", counter]
+                elif "None" in player_1_buffer:
+                    P1.frame_inputs = ["Strong", None, counter]
+            else:
+                P1.frame_inputs = [None, None, counter]
+            # print(P1.frame_inputs)
 
-        P2.frame_inputs += " %d" % counter
-        if P2.frame_inputs != (" %d" % counter):
-            print(P2.frame_inputs)
-            if "Attack" in P2.frame_inputs and "Strong" in P2.frame_inputs:
-                P2.frame_inputs = ["Super", None]
-            elif "Special" in P2.frame_inputs:
-                if "Left" in P2.frame_inputs:
-                    P2.frame_inputs = ["Special", "Left"]
-                elif "Right" in P2.frame_inputs:
-                    P2.frame_inputs = ["Special", "Right"]
-                elif "Up" in P2.frame_inputs:
-                    P2.frame_inputs = ["Special", "Up"]
-                elif "Down" in P2.frame_inputs:
-                    P2.frame_inputs = ["Special", "Down"]
-                else:
-                    P2.frame_inputs = ["Special", None]
-            elif "Attack" in P2.frame_inputs:
-                if "Left" in P2.frame_inputs:
-                    P2.frame_inputs = ["Attack", "Left"]
-                elif "Right" in P2.frame_inputs:
-                    P2.frame_inputs = ["Attack", "Right"]
-                elif "Up" in P2.frame_inputs:
-                    P2.frame_inputs = ["Attack", "Up"]
-                elif "Down" in P2.frame_inputs:
-                    P2.frame_inputs = ["Attack", "Down"]
-                else:
-                    P2.frame_inputs = ["Attack", None]
-            elif "Strong" in P2.frame_inputs:
-                if "Left" in P2.frame_inputs:
-                    P2.frame_inputs = ["Strong", "Left"]
-                elif "Right" in P2.frame_inputs:
-                    P2.frame_inputs = ["Strong", "Right"]
-                elif "Up" in P2.frame_inputs:
-                    P2.frame_inputs = ["Strong", "Up"]
-                elif "Down" in P2.frame_inputs:
-                    P2.frame_inputs = ["Strong", "Down"]
-                else:
-                    P2.frame_inputs = ["Strong", None]
-            print(P2.frame_inputs)
-            
+        player_2_buffer += " %d" % counter
+        if player_2_buffer != (" %d" % counter):
+            # print(player_2_buffer)
+            if "Attack" in player_2_buffer and "Strong" in player_2_buffer:
+                P2.frame_inputs = ["Super", None, counter]
+            elif "Special" in player_2_buffer:
+                if "Left" in player_2_buffer:
+                    P2.frame_inputs = ["Special", "Left", counter]
+                elif "Right" in player_2_buffer:
+                    P2.frame_inputs = ["Special", "Right", counter]
+                elif "Up" in player_2_buffer:
+                    P2.frame_inputs = ["Special", "Up", counter]
+                elif "Down" in player_2_buffer:
+                    P2.frame_inputs = ["Special", "Down", counter]
+                elif "None" in player_2_buffer:
+                    P2.frame_inputs = ["Special", None, counter]
+            elif "Attack" in player_2_buffer:
+                if "Left" in player_2_buffer:
+                    P2.frame_inputs = ["Attack", "Left", counter]
+                elif "Right" in player_2_buffer:
+                    P2.frame_inputs = ["Attack", "Right", counter]
+                elif "Up" in player_2_buffer:
+                    P2.frame_inputs = ["Attack", "Up", counter]
+                elif "Down" in player_2_buffer:
+                    P2.frame_inputs = ["Attack", "Down", counter]
+                elif "None" in player_2_buffer:
+                    P2.frame_inputs = ["Attack", None, counter]
+            elif "Strong" in player_2_buffer:
+                if "Left" in player_2_buffer:
+                    P2.frame_inputs = ["Strong", "Left", counter]
+                elif "Right" in player_2_buffer:
+                    P2.frame_inputs = ["Strong", "Right", counter]
+                elif "Up" in player_2_buffer:
+                    P2.frame_inputs = ["Strong", "Up", counter]
+                elif "Down" in player_2_buffer:
+                    P2.frame_inputs = ["Strong", "Down", counter]
+                elif "None" in player_2_buffer:
+                    P2.frame_inputs = ["Strong", None, counter]
+            else:
+                P2.frame_inputs = [None, None, counter]
+            # print(P2.frame_inputs)
+
+        # displaysurface.fill((0, 0, 0))
+        # P1.findBuffer(player1Left, player2Right, player1Up, player1Down, player1Attack, player1Shield)
         P1jumps = P1.get_Jumps()
         P2jumps = P2.get_Jumps()
 
@@ -554,7 +801,9 @@ def main(attack_angle_1, attack_angle_2, P1, P2, P1Char, P2Char, player1Left, pl
         P1Dis2.update((P1.hitbox_length2, P1.hitbox_height2), (P1.hitbox_pos_x2, P1.hitbox_pos_y2), P1.attack_colour)
         P1DisProj.update((P1.hitbox_lengthProj, P1.hitbox_heightProj), (P1.hitbox_pos_xProj, P1.hitbox_pos_yProj),
                          P1.attack_colour)
-        
+
+        # activity_1 = P1.createHit()
+
         P1.getHit(P1, player2box_1, P1shield, player2box_2, player2box_projectile, P2.induce_shieldstun)
         P1.hit_opponent(P2, P2shield, player1box_1, player1box_2, P2.invincibility_frames, player1box_projectile)
 
@@ -563,7 +812,10 @@ def main(attack_angle_1, attack_angle_2, P1, P2, P1Char, P2Char, player1Left, pl
         P1shield.update((P1.shield_length, P1.shield_height), (P1.shield_pos_x, P1.shield_pos_y))
         P1.roll(player1Left, player1Right, player1Down)
         P1.airdodge(player1Left, player1Right, player1Up, player1Down, player1Shield)
+        # P1shield2.update((P1.shield2_length, P1.shield2_height), (P1.shield2_pos_x, P1.shield2_pos_y))
+        # P1shield3.update((P1.shield3_length, P1.shield3_height), (P1.shield3_pos_x, P1.shield3_pos_y))
 
+        # print(P1.image)
         P1hurt.update(P1.image, (P1.hurt_pos_x, P1.hurt_pos_y))
         P1proj.update(P1.proj_image, (P1.proj_pos_x, P1.proj_pos_y))
 
@@ -572,6 +824,7 @@ def main(attack_angle_1, attack_angle_2, P1, P2, P1Char, P2Char, player1Left, pl
         else:
             all_sprites.add(P1proj)
 
+        # P2.findBuffer(player1Left, player1Right, player1Up, player1Down, player1Attack, player1Shield)
         P2.move(player2Left, player2Right, player2Down)
         attack_angle_2 = P2.get_angle(attack_angle_2)
 
@@ -591,6 +844,8 @@ def main(attack_angle_1, attack_angle_2, P1, P2, P1Char, P2Char, player1Left, pl
         P2DisProj.update((P2.hitbox_lengthProj, P2.hitbox_heightProj), (P2.hitbox_pos_xProj, P2.hitbox_pos_yProj),
                          P2.attack_colour)
 
+        # activity_2 = P2.createHit()
+
         P2.getHit(P2, player1box_1, P2shield, player1box_2, player1box_projectile, P1.induce_shieldstun)
         P2.hit_opponent(P1, P1shield, player2box_1, player2box_2, P1.invincibility_frames, player2box_projectile)
 
@@ -599,6 +854,8 @@ def main(attack_angle_1, attack_angle_2, P1, P2, P1Char, P2Char, player1Left, pl
         P2shield.update((P2.shield_length, P2.shield_height), (P2.shield_pos_x, P2.shield_pos_y))
         P2.roll(player2Left, player2Right, player2Down)
         P2.airdodge(player2Left, player2Right, player2Up, player2Down, player2Shield)
+        # P2shield2.update((P2.shield2_length, P2.shield2_height), (P2.shield2_pos_x, P2.shield2_pos_y))
+        # P2shield3.update((P2.shield3_length, P2.shield3_height), (P2.shield3_pos_x, P2.shield3_pos_y))
 
         P2hurt.update(P2.image, (P2.hurt_pos_x, P2.hurt_pos_y))
         P2proj.update(P2.proj_image, (P2.proj_pos_x, P2.proj_pos_y))
@@ -647,7 +904,12 @@ def main(attack_angle_1, attack_angle_2, P1, P2, P1Char, P2Char, player1Left, pl
         displaysurface.blit(textSurf, textRect)
 
         pygame.display.update()
+        # end_time = time.time()
+        # print(end_time - start_time)
         FramePerSec.tick(FPS)
+        # print(FramePerSec.get_fps())
+
+    # soundObj.stop()
 
 
 player1ControlList = [K_LEFT, K_RIGHT, K_UP, K_DOWN, K_k, K_j, K_l, K_h]
@@ -656,6 +918,7 @@ stockCount = 3
 GameTimer = 1
 music_volume = 0.3
 
+# playMusic("../PlatformFighter/MUSIC/MenuViber.wav", volume=(music_volume / 6))
 Start_Screen.startScreen()
 
 while True:
@@ -664,6 +927,7 @@ while True:
 
     charLoop = True
     next_action = []
+    # arteens
     while charLoop:
 
         next_action = Character_Select.charSelect()
@@ -690,6 +954,7 @@ while True:
         raise ReferenceError("Player 2 Character Choice Not Found")
 
     #  INITIALIZATION
+    # PT1 = Stage(((WIDTH / 2), 310), (0, 191, 255), ((WIDTH / 2), (HEIGHT - 10)))
     Stage_image = imageBox((0, 0), (0, 0))
     PT2 = StageTop(5, int(WIDTH / 2), int(WIDTH / 2), int(HEIGHT - 165))
     PT3 = StageSide(575, 50)
@@ -729,6 +994,7 @@ while True:
 
     # All Sprites group
     all_sprites = pygame.sprite.Group()
+    # all_sprites.add(Stage_image)
     all_sprites.add(P1shield)
     all_sprites.add(P1shield2)
     all_sprites.add(P1shield3)
@@ -739,6 +1005,8 @@ while True:
     all_sprites.add(P2hurt)
     all_sprites.add(P1proj)
     all_sprites.add(P2proj)
+    # all_sprites.add(P1box)
+    # all_sprites.add(P1box2)
     if hitbox_on_off:
         all_sprites.add(P1)  # HURTBOX DISPLAY
         all_sprites.add(P2)  # HURTBOX DISPLAy
@@ -748,9 +1016,12 @@ while True:
         all_sprites.add(P2Dis)  # HITBOX DISPLAY
         all_sprites.add(P2Dis2)  # HITBOX DISPLAY
         all_sprites.add(P2DisProj)  # HITBOX DISPLAY
+    # all_sprites.add(P2box)
+    # all_sprites.add(P2box2)
     all_sprites.add(PT2)
     all_sprites.add(PT3)
     all_sprites.add(PT4)
+    # all_sprites.add(PT1)
     all_sprites.add(PT5)
     all_sprites.add(PT6)
     all_sprites.add(PT7)
@@ -825,6 +1096,7 @@ while True:
 
     # All stage elements
     stage_elements = pygame.sprite.Group()
+    # stage_elements.add(PT1)
     stage_elements.add(PT2)
     stage_elements.add(PT3)
     stage_elements.add(PT4)
@@ -840,3 +1112,4 @@ while True:
          player2Strong=player2ControlList[6], player2Special=player2ControlList[7],
          song=songList[random.randint(0, 1)], song_volume=music_volume)
     time.sleep(2)
+    # webbrowser.open("https://js-dos.com/games/doom.exe.html")
