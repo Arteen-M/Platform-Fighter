@@ -26,7 +26,7 @@ class PlayerStickman(pygame.sprite.Sprite):
         super().__init__()
         self.colour = colour  # HURTBOX COLOUR (TESTING ONLY)
         # FIRST INSTANCE OF PLAYER IMAGE
-        self.surf = pygame.image.load("Stickman Character/Walk cycle/stick_char_run_60fps-1.png")
+        self.surf = pygame.image.load("Stickman Character/Walk cycle/stick_char_run_60fps-1.png").convert_alpha()
         # SET PLAYER SPAWNPOINT (X)
         if numPlayer == 1:
             spawnpos = 500
@@ -77,285 +77,176 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         # SET PLAYER JUMPSQUAT
         self.jumpsquat_right = [
-            "../PlatformFighter/Stickman Character/Jump Squat Frames/stick_char_jump-1.png",
-            "../PlatformFighter/Stickman Character/Jump Squat Frames/stick_char_jump-2.png",
-            "../PlatformFighter/Stickman Character/Jump Squat Frames/stick_char_jump-3.png"]
+            pygame.image.load("../PlatformFighter/Stickman Character/Jump Squat Frames/stick_char_jump-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jump Squat Frames/stick_char_jump-2.png").convert_alpha(),
+            pygame.transform.flip(pygame.image.load("../PlatformFighter/Stickman Character/Jump Squat Frames/stick_char_jump_reverse-3.png"), True, False).convert_alpha()]
         self.jumpsquat_left = [
-            "../PlatformFighter/Stickman Character/Jump Squat Frames/stick_char_jump_reverse-1.png",
-            "../PlatformFighter/Stickman Character/Jump Squat Frames/stick_char_jump_reverse-2.png",
-            "../PlatformFighter/Stickman Character/Jump Squat Frames/stick_char_jump_reverse-3.png"]
+            pygame.image.load("../PlatformFighter/Stickman Character/Jump Squat Frames/stick_char_jump_reverse-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jump Squat Frames/stick_char_jump_reverse-2.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jump Squat Frames/stick_char_jump_reverse-3.png").convert_alpha()]
         self.in_jumpsquat = 0
 
-        self.hitstunLeft = "../PlatformFighter/Stickman Character/Hitstun/stick_char_hitstun-1.png"
-        self.hitstunRight = "../PlatformFighter/Stickman Character/Hitstun/stick_char_hitstun_clone-1.png"
+        self.hitstunLeft = pygame.image.load("../PlatformFighter/Stickman Character/Hitstun/stick_char_hitstun-1.png").convert_alpha()
+        self.hitstunRight = pygame.image.load("../PlatformFighter/Stickman Character/Hitstun/stick_char_hitstun_clone-1.png").convert_alpha()
 
         # AERIAL DRIFT ANIMATION
-        self.jump_left = "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-4.png"
-        self.jump_right = "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-18.png"
+        self.jump_left = pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-4.png").convert_alpha()
+        self.jump_right = pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-18.png").convert_alpha()
         self.drift_cycle = 0
 
         # SET PLAYER IDLE CYCLE
         self.idle_cycle = [
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png"]
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha()]
         self.in_idle_cycle = 0
 
-        self.idle_cycle_left = [
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-7.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-4.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
-            "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png"]
+        self.idle_cycle_left = []
+        for x in range(len(self.idle_cycle)):
+            self.idle_cycle_left.append(pygame.transform.flip(self.idle_cycle[x], True, False))
+
         self.in_idle_cycle_left = 0
 
         # SET PLAYER WALK CYCLE
         self.walk_cycle_right = [
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-1.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-1.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-1.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-1.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-6.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-6.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-6.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-6.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-11.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-11.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-11.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-11.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-18.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-18.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-18.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-18.png"]
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-6.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-6.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-6.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-6.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-11.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-11.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-11.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-11.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-18.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-18.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-18.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_60fps-18.png").convert_alpha()]
         self.in_walk_cycle_right = 0
 
-        self.walk_cycle_left = [
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-1.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-1.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-1.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-1.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-2.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-2.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-2.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-2.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-3.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-3.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-3.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-3.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-4.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-4.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-4.png",
-            "../PlatformFighter/Stickman Character/Walk cycle/stick_char_run_clone-4.png"]
+        self.walk_cycle_left = []
+        for x in range(len(self.walk_cycle_right)):
+            self.walk_cycle_left.append(pygame.transform.flip(self.walk_cycle_right[x], True, False))
         self.in_walk_cycle_left = 0
 
         # SET PLAYER CROUCH CYCLE
         self.crouch_right = [
-            "../PlatformFighter/Stickman Character/Crouch/stick_char_crouch-1.png",
-            "../PlatformFighter/Stickman Character/Crouch/stick_char_crouch-2.png"]
+            pygame.image.load("../PlatformFighter/Stickman Character/Crouch/stick_char_crouch-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Crouch/stick_char_crouch-2.png").convert_alpha()]
         self.crouch_left = [
-            "../PlatformFighter/Stickman Character/Crouch/stick_char_crouch_clone-2.png",
-            "../PlatformFighter/Stickman Character/Crouch/stick_char_crouch_clone-3.png"]
+            pygame.image.load("../PlatformFighter/Stickman Character/Crouch/stick_char_crouch_clone-2.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Crouch/stick_char_crouch_clone-3.png").convert_alpha()]
         self.crouch_frames = 0
 
         # SETS PLAYER JAB CYCLE AND ATTRIBUTES
         self.jab_right = [
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-1.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-1.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-1.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-2.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-2.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-2.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-3.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-3.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-3.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-4.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-4.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-4.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-5.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-5.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-5.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-6.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-6.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-6.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-7.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-7.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-7.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-8.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-8.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-8.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-9.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-9.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-9.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-10.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-10.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab-10.png"]
-        self.jab_left = [
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-1.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-1.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-1.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-2.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-2.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-2.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-3.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-3.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-3.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-4.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-4.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-4.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-5.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-5.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-5.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-6.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-6.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-6.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-7.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-7.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-7.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-8.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-8.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-8.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-9.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-9.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-9.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-10.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-10.png",
-            "../PlatformFighter/Stickman Character/Jab/stick_char_jab_clone-10.png"]
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-2.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-2.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-2.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-3.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-3.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-3.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-5.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-5.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-5.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-6.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-6.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-6.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-8.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-8.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-8.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-9.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-9.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-9.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-10.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-10.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Jab/stick_char_jab-10.png").convert_alpha()]
+
+        self.jab_left = []
+        for x in range(len(self.jab_right)):
+            self.jab_left.append(pygame.transform.flip(self.jab_right[x], True, False))
+
         self.in_jab_right = 0
         self.in_jab_left = 0
 
@@ -375,66 +266,42 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         # SET PLAYER F-TILT CYCLE (RIGHT) + ATTRIBUTES
         self.f_tilt_right = [
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-1.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-1.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-2.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-2.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-3.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-3.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-4.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-4.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-5.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-5.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-6.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-6.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-7.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-7.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-8.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-8.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-9.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-9.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-10.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-10.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-11.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-11.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-12.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-12.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-13.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-13.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-14.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-14.png"]
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-2.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-2.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-3.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-3.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-5.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-5.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-6.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-6.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-8.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-8.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-9.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-9.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-10.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-10.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-11.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-11.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-12.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-12.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-13.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-13.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-14.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt-14.png").convert_alpha()]
         self.in_f_tilt = 0
 
         # SET PLAYER F-TILT CYCLE (LEFT) + ATTRIBUTES
-        self.f_tilt_left = [
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-1.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-1.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-2.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-2.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-3.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-3.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-4.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-4.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-5.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-5.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-6.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-6.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-7.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-7.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-8.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-8.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-9.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-9.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-10.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-10.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-11.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-11.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-12.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-12.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-13.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-13.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-14.png",
-            "../PlatformFighter/Stickman Character/Forward Tilt/stick_char_ftilt_clone-14.png"]
+
+        self.f_tilt_left = []
+        for x in range(len(self.f_tilt_right)):
+            self.f_tilt_left.append(pygame.transform.flip(self.f_tilt_right[x], True, False))
+
         self.in_f_tilt_left = 0
 
         self.f_tilt_x = math.sin(math.radians(65))
@@ -444,36 +311,26 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.f_tilt_scale = 0.14
         self.f_tilt_hitstun = 7
 
-        # SET PLAYER DOWN-TILT CYCLE (RIGHT) + ATTRIBUTES
+        # SET PLAYER DOWN-TILT CYCLE + ATTRIBUTES
         self.down_tilt_right = [
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-1.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-1.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-2.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-2.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-3.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-3.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-4.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-4.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-5.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-5.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-6.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-6.png"]
+            pygame.image.load("../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-2.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-2.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-3.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-3.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-5.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-5.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-6.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt-6.png").convert_alpha()]
         self.in_down_tilt_right = 0
 
-        # SET PLAYER DOWN TILT CYCLE (LEFT) + ATTRIBUTES
-        self.down_tilt_left = [
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt_reverse-1.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt_reverse-1.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt_reverse-2.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt_reverse-2.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt_reverse-3.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt_reverse-3.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt_reverse-4.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt_reverse-4.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt_reverse-5.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt_reverse-5.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt_reverse-6.png",
-            "../PlatformFighter/Stickman Character/Down Tilt/stick_char_dtilt_reverse-6.png"]
+        self.down_tilt_left = []
+        for x in range(len(self.down_tilt_right)):
+            self.down_tilt_left.append(pygame.transform.flip(self.down_tilt_right[x], True, False))
+
         self.in_down_tilt_left = 0
 
         self.down_tilt_x = math.sin(math.radians(20))
@@ -485,79 +342,47 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         # SET PLAYER UP-TILT CYCLE
         self.up_tilt_right = [
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-1.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-1.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-2.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-2.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-3.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-3.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-4.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-4.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-5.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-5.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-6.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-6.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-7.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-7.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-8.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-8.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-9.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-9.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-10.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-10.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-11.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-11.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-12.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-12.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-13.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-13.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-14.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-14.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-15.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-15.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-16.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-16.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-17.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-17.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-18.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-18.png"]
-        self.up_tilt_left = [
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-1.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-1.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-2.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-2.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-3.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-3.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-4.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-4.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-5.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-5.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-6.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-6.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-7.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-7.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-8.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-8.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-9.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-9.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-10.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-10.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-11.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-11.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-12.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-12.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-13.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-13.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-14.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-14.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-15.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-15.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-16.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-16.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-17.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-17.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-18.png",
-            "../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt_clone-18.png"]
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-2.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-2.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-3.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-3.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-5.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-5.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-6.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-6.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-8.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-8.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-9.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-9.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-10.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-10.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-11.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-11.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-12.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-12.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-13.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-13.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-14.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-14.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-15.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-15.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-16.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-16.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-17.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-17.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-18.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Up Tilt/stick_char_uptilt-18.png").convert_alpha()]
+
+        self.up_tilt_left = []
+        for x in range(len(self.up_tilt_right)):
+            self.up_tilt_left.append(pygame.transform.flip(self.up_tilt_right[x], True, False))
+
         self.in_up_tilt = 0
 
         self.up_tilt1_x = math.sin(math.radians(45))
@@ -576,43 +401,29 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         # SET PLAYER FORWARD AIR CYCLE
         self.f_air_right = [
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-1.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-2.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-3.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-4.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-5.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-6.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-7.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-8.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-9.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-10.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-11.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-12.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-13.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-14.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-15.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-16.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-17.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-18.png"]
-        self.f_air_left = [
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-1.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-2.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-3.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-4.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-5.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-6.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-7.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-8.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-9.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-10.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-11.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-12.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-13.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-14.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-15.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-16.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-17.png",
-            "../PlatformFighter/Stickman Character/Forward Air/stick_char_fair-18.png"]
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-1.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-2.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-3.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-4.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-5.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-6.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-7.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-8.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-9.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-10.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-11.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-12.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-13.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-14.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-15.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-16.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-17.png").convert_alpha(),
+            pygame.image.load("../PlatformFighter/Stickman Character/Forward Air/stick_char_fair_clone-18.png").convert_alpha()]
+
+        self.f_air_left = []
+        for x in range(len(self.f_air_right)):
+            self.f_air_left.append(pygame.transform.flip(self.f_air_right[x], True, False))
+
         self.in_f_air_right = 0
         self.in_f_air_left = 0
 
@@ -624,46 +435,31 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.f_air_hitstun = 6
 
         # SET PLAYER DOWN AIR CYCLE AND ATTRIBUTES
-        self.down_air_right = ["../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-1.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-1.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-2.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-2.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-3.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-3.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-4.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-4.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-5.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-5.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-6.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-6.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-7.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-7.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-8.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-8.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-9.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-9.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-10.png",
-                               "../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-10.png"]
-        self.down_air_left = ["../PlatformFighter/Stickman Character/Down Air/stick_char_dair-1.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-1.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-2.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-2.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-3.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-3.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-4.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-4.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-5.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-5.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-6.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-6.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-7.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-7.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-8.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-8.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-9.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-9.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-10.png",
-                              "../PlatformFighter/Stickman Character/Down Air/stick_char_dair-10.png"]
+        self.down_air_right = [pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-1.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-1.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-2.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-2.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-3.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-3.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-4.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-4.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-5.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-5.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-6.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-6.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-7.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-7.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-8.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-8.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-9.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-9.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-10.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Down Air/stick_char_dair_clone-10.png").convert_alpha()]
+
+        self.down_air_left = []
+        for x in range(len(self.down_air_right)):
+            self.down_air_left.append(pygame.transform.flip(self.down_air_right[x], True, False))
+
         self.in_down_air = 0
 
         self.down_air_x = 0
@@ -674,38 +470,27 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.down_air_hitstun = 5
 
         # SET PLAYER UP AIR CYCLE AND ATTRIBUTES
-        self.up_air_right = ["../PlatformFighter/Stickman Character/Up Air/stick_char_upair-1.png",
-                             "../PlatformFighter/Stickman Character/Up Air/stick_char_upair-1.png",
-                             "../PlatformFighter/Stickman Character/Up Air/stick_char_upair-2.png",
-                             "../PlatformFighter/Stickman Character/Up Air/stick_char_upair-2.png",
-                             "../PlatformFighter/Stickman Character/Up Air/stick_char_upair-3.png",
-                             "../PlatformFighter/Stickman Character/Up Air/stick_char_upair-3.png",
-                             "../PlatformFighter/Stickman Character/Up Air/stick_char_upair-4.png",
-                             "../PlatformFighter/Stickman Character/Up Air/stick_char_upair-4.png",
-                             "../PlatformFighter/Stickman Character/Up Air/stick_char_upair-5.png",
-                             "../PlatformFighter/Stickman Character/Up Air/stick_char_upair-5.png",
-                             "../PlatformFighter/Stickman Character/Up Air/stick_char_upair-6.png",
-                             "../PlatformFighter/Stickman Character/Up Air/stick_char_upair-6.png",
-                             "../PlatformFighter/Stickman Character/Up Air/stick_char_upair-7.png",
-                             "../PlatformFighter/Stickman Character/Up Air/stick_char_upair-7.png",
-                             "../PlatformFighter/Stickman Character/Up Air/stick_char_upair-8.png",
-                             "../PlatformFighter/Stickman Character/Up Air/stick_char_upair-8.png"]
-        self.up_air_left = ["../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-1.png",
-                            "../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-1.png",
-                            "../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-2.png",
-                            "../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-2.png",
-                            "../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-3.png",
-                            "../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-3.png",
-                            "../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-4.png",
-                            "../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-4.png",
-                            "../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-5.png",
-                            "../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-5.png",
-                            "../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-6.png",
-                            "../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-6.png",
-                            "../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-7.png",
-                            "../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-7.png",
-                            "../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-8.png",
-                            "../PlatformFighter/Stickman Character/Up Air/stick_char_upair_clone-8.png"]
+        self.up_air_right = [pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-1.png").convert_alpha(),
+                             pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-1.png").convert_alpha(),
+                             pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-2.png").convert_alpha(),
+                             pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-2.png").convert_alpha(),
+                             pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-3.png").convert_alpha(),
+                             pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-3.png").convert_alpha(),
+                             pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-4.png").convert_alpha(),
+                             pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-4.png").convert_alpha(),
+                             pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-5.png").convert_alpha(),
+                             pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-5.png").convert_alpha(),
+                             pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-6.png").convert_alpha(),
+                             pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-6.png").convert_alpha(),
+                             pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-7.png").convert_alpha(),
+                             pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-7.png").convert_alpha(),
+                             pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-8.png").convert_alpha(),
+                             pygame.image.load("../PlatformFighter/Stickman Character/Up Air/stick_char_upair-8.png").convert_alpha()]
+
+        self.up_air_left = []
+        for x in range(len(self.up_air_right)):
+            self.up_air_left.append(pygame.transform.flip(self.up_air_right[x], True, False))
+
         self.in_up_air_right = 0
         self.in_up_air_left = 0
 
@@ -717,58 +502,37 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.up_air_hitstun = 6
 
         # SET PLAYER BACK AIR ATTRIBUTES
-        self.back_air_left = ["../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-1.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-1.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-2.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-2.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-3.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-3.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-4.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-4.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-5.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-5.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-6.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-6.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-7.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-7.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-8.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-8.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-9.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-9.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-10.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-10.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-11.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-11.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-12.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-12.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-13.png",
-                              "../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-13.png"]
-        self.back_air_right = ["../PlatformFighter/Stickman Character/Back Air/stick_char_bair-1.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-1.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-2.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-2.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-3.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-3.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-4.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-4.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-5.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-5.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-6.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-6.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-7.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-7.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-8.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-8.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-9.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-9.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-10.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-10.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-11.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-11.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-12.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-12.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-13.png",
-                               "../PlatformFighter/Stickman Character/Back Air/stick_char_bair-13.png"]
+        self.back_air_left = [pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-1.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-1.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-2.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-2.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-3.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-3.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-4.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-4.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-5.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-5.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-6.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-6.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-7.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-7.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-8.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-8.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-9.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-9.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-10.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-10.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-11.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-11.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-12.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-12.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-13.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Back Air/stick_char_bair_clone-13.png").convert_alpha()]
+
+        self.back_air_right = []
+        for x in range(len(self.back_air_left)):
+            self.back_air_right.append(pygame.transform.flip(self.back_air_left[x], True, False))
+
         self.in_back_air_right = 0
         self.in_back_air_left = 0
 
@@ -780,34 +544,34 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.back_air_hitstun = 6
 
         # NEUTRAL AIR SETUP AND ATTRIBUTES
-        self.neutral_air = ["../PlatformFighter/Stickman Character/Neutral Air/Nair_0.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_1.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_2.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_3.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_4.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_5.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_6.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_7.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_8.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_9.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_10.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_11.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_12.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_13.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_14.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_15.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_16.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_17.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_18.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_19.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_20.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_21.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_22.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_23.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_24.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_25.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_26.png",
-                            "../PlatformFighter/Stickman Character/Neutral Air/Nair_27.png"]
+        self.neutral_air = [pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_0.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_1.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_2.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_3.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_4.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_5.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_6.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_7.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_8.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_9.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_10.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_11.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_12.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_13.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_14.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_15.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_16.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_17.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_18.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_19.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_20.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_21.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_22.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_23.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_24.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_25.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_26.png").convert_alpha(),
+                            pygame.image.load("../PlatformFighter/Stickman Character/Neutral Air/Nair_27.png").convert_alpha()]
         self.in_neutral_air_right = 0
         self.in_neutral_air_left = 0
 
@@ -826,52 +590,34 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.neutral_air_4_hitstun = 4
 
         # FORWARD STRONG SETUP AND ATTRIBUTES
-        self.f_strong_right = ["../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-1.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-1.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-2.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-2.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-3.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-3.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-4.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-4.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-5.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-5.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-6.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-6.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-7.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-7.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-8.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-8.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-9.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-9.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-10.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-10.png",
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-11.png"
-                               "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-11.png"]
+        self.f_strong_right = [pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-1.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-1.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-2.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-2.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-3.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-3.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-4.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-4.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-5.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-5.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-6.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-6.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-7.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-7.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-8.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-8.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-9.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-9.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-10.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-10.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-11.png").convert_alpha(),
+                               pygame.image.load("../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-11.png").convert_alpha()]
         self.in_f_strong_right = 0
 
-        self.f_strong_left = ["../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-1.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-1.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-2.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-2.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-3.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-3.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-4.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-4.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-5.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-5.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-6.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-6.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-7.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-7.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-8.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-8.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-9.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-9.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-10.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-10.png",
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-11.png"
-                              "../PlatformFighter/Stickman Character/Forward Strong/stick-f-smash-reverse-11.png"]
+        self.f_strong_left = []
+        for x in range(len(self.f_strong_right)):
+            self.f_strong_left.append(pygame.transform.flip(self.f_strong_right[x], True, False))
+
         self.in_f_strong_left = 0
 
         self.f_strong_x = math.sin(math.radians(80))
@@ -883,40 +629,27 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.charge_boost_fs = 0.01
 
         # UP STRONG SETUP AND ATTRIBUTES
-        self.up_strong_right = ["../PlatformFighter/Stickman Character/Up Strong/Up Strong 0.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 1.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 2.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 3.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 4.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 5.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 6.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 7.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 8.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 9.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 10.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 11.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 12.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 13.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 14.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 15.png",
-                                "../PlatformFighter/Stickman Character/Up Strong/Up Strong 16.png"]
-        self.up_strong_left = ["../PlatformFighter/Stickman Character/Up Strong/Up Strong 0 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 1 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 2 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 3 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 4 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 5 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 6 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 7 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 8 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 9 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 10 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 11 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 12 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 13 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 14 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 15 Reverse.png",
-                               "../PlatformFighter/Stickman Character/Up Strong/Up Strong 16 Reverse.png"]
+        self.up_strong_right = [pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 0.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 1.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 2.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 3.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 4.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 5.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 6.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 7.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 8.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 9.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 10.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 11.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 12.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 13.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 14.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 15.png").convert_alpha(),
+                                pygame.image.load("../PlatformFighter/Stickman Character/Up Strong/Up Strong 16.png").convert_alpha()]
+
+        self.up_strong_left = []
+        for x in range(len(self.up_strong_right)):
+            self.up_strong_left.append(pygame.transform.flip(self.up_strong_right[x], True, False))
 
         self.in_up_strong_right = 0
         self.in_up_strong_left = 0
@@ -930,82 +663,48 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.charge_boost_us = 0.0017
 
         # DOWN STRONG SETUP AND ATTRIBUTES
-        self.down_strong_right = ["../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_1.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_1.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_2.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_2.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_3.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_3.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_4.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_4.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_5.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_5.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_6.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_6.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_7.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_7.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_8.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_8.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_9.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_9.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_10.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_10.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_11.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_11.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_12.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_12.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_13.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_13.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_14.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_14.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_15.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_15.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_16.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_16.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_17.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_17.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_18.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_18.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_19.png",
-                                  "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_19.png"]
-        self.down_strong_left = ["../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_1.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_1.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_2.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_2.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_3.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_3.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_4.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_4.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_5.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_5.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_6.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_6.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_7.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_7.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_8.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_8.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_9.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_9.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_10.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_10.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_11.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_11.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_12.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_12.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_13.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_13.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_14.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_14.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_15.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_15.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_16.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_16.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_17.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_17.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_18.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_18.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_19.png",
-                                 "../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_Reverse_19.png"]
+        self.down_strong_right = [pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_1.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_1.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_2.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_2.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_3.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_3.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_4.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_4.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_5.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_5.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_6.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_6.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_7.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_7.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_8.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_8.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_9.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_9.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_10.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_10.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_11.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_11.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_12.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_12.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_13.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_13.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_14.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_14.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_15.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_15.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_16.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_16.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_17.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_17.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_18.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_18.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_19.png").convert_alpha(),
+                                  pygame.image.load("../PlatformFighter/Stickman Character/Down Strong/Stickman_Down_Smash_19.png").convert_alpha()]
+
+        self.down_strong_left = []
+        for x in range(len(self.down_strong_right)):
+            self.down_strong_left.append(pygame.transform.flip(self.down_strong_right[x], True, False))
 
         self.in_down_strong = 0
 
@@ -1020,34 +719,25 @@ class PlayerStickman(pygame.sprite.Sprite):
         # FLASH SETUP AND ATTRIBUTES
         self.flash_percent = 100
 
-        self.flash_attack_right = ["../PlatformFighter/Stickman Character/Flash/Flash 0 Reverse.png",
-                                   "../PlatformFighter/Stickman Character/Flash/Flash 0 Reverse.png",
-                                   "../PlatformFighter/Stickman Character/Flash/Flash 1 Reverse.png",
-                                   "../PlatformFighter/Stickman Character/Flash/Flash 1 Reverse.png",
-                                   "../PlatformFighter/Stickman Character/Flash/Flash 2 Reverse.png",
-                                   "../PlatformFighter/Stickman Character/Flash/Flash 2 Reverse.png",
-                                   "../PlatformFighter/Stickman Character/Flash/Flash 3 Reverse.png",
-                                   "../PlatformFighter/Stickman Character/Flash/Flash 3 Reverse.png",
-                                   "../PlatformFighter/Stickman Character/Flash/Flash 4 Reverse.png",
-                                   "../PlatformFighter/Stickman Character/Flash/Flash 4 Reverse.png",
-                                   "../PlatformFighter/Stickman Character/Flash/Flash 5 Reverse.png",
-                                   "../PlatformFighter/Stickman Character/Flash/Flash 5 Reverse.png",
-                                   "../PlatformFighter/Stickman Character/Flash/Flash 6 Reverse.png",
-                                   "../PlatformFighter/Stickman Character/Flash/Flash 6 Reverse.png"]
-        self.flash_attack_left = ["../PlatformFighter/Stickman Character/Flash/Flash 0.png",
-                                  "../PlatformFighter/Stickman Character/Flash/Flash 0.png",
-                                  "../PlatformFighter/Stickman Character/Flash/Flash 1.png",
-                                  "../PlatformFighter/Stickman Character/Flash/Flash 1.png",
-                                  "../PlatformFighter/Stickman Character/Flash/Flash 2.png",
-                                  "../PlatformFighter/Stickman Character/Flash/Flash 2.png",
-                                  "../PlatformFighter/Stickman Character/Flash/Flash 3.png",
-                                  "../PlatformFighter/Stickman Character/Flash/Flash 3.png",
-                                  "../PlatformFighter/Stickman Character/Flash/Flash 4.png",
-                                  "../PlatformFighter/Stickman Character/Flash/Flash 4.png",
-                                  "../PlatformFighter/Stickman Character/Flash/Flash 5.png",
-                                  "../PlatformFighter/Stickman Character/Flash/Flash 5.png",
-                                  "../PlatformFighter/Stickman Character/Flash/Flash 6.png",
-                                  "../PlatformFighter/Stickman Character/Flash/Flash 6.png"]
+        self.flash_attack_right = [pygame.image.load("../PlatformFighter/Stickman Character/Flash/Flash 0 Reverse.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Flash/Flash 0 Reverse.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Flash/Flash 1 Reverse.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Flash/Flash 1 Reverse.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Flash/Flash 2 Reverse.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Flash/Flash 2 Reverse.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Flash/Flash 3 Reverse.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Flash/Flash 3 Reverse.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Flash/Flash 4 Reverse.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Flash/Flash 4 Reverse.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Flash/Flash 5 Reverse.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Flash/Flash 5 Reverse.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Flash/Flash 6 Reverse.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Flash/Flash 6 Reverse.png").convert_alpha()]
+
+        self.flash_attack_left = []
+        for x in range(len(self.flash_attack_right)):
+            self.flash_attack_left.append(pygame.transform.flip(self.flash_attack_right[x], True, False))
+
         self.in_flash = 0
 
         self.flash_x = math.sin(math.radians(45))
@@ -1059,92 +749,53 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         # NEUTRAL SPECIAL SETUP AND ATTRIBUTES
 
-        self.neutral_special_right = ["../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_0.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_0.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_1.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_1.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_2.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_2.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_3.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_3.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_4.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_4.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_5.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_5.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_6.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_6.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_7.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_7.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_8.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_8.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_9.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_9.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_10.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_10.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_11.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_11.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_12.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_12.png",
+        self.neutral_special_right = [pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_0.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_0.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_1.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_1.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_2.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_2.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_3.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_3.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_4.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_4.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_5.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_5.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_6.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_6.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_7.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_7.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_8.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_8.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_9.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_9.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_10.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_10.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_11.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_11.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_12.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_12.png").convert_alpha(),
                                       # "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_13.png",
                                       # "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_13.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png",
-                                      "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png"]
-        self.neutral_special_left = ["../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_0.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_0.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_1.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_1.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_2.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_2.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_3.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_3.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_4.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_4.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_5.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_5.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_6.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_6.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_7.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_7.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_8.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_8.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_9.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_9.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_10.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_10.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_11.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_11.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_12.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_12.png",
-                                     # "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_13.png",
-                                     # "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_13.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_14.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_14.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_14.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_14.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_14.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_14.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_14.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_14.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_14.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_14.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_14.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_14.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_14.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_14.png",
-                                     "../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_reverse_14.png"]
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png").convert_alpha(),
+                                      pygame.image.load("../PlatformFighter/Stickman Character/Neutral Special/Neutral_B_14.png").convert_alpha()]
+
+        self.neutral_special_left = []
+        for x in range(len(self.neutral_special_right)):
+            self.neutral_special_left.append(pygame.transform.flip(self.neutral_special_right[x], True, False))
 
         self.in_neutral_special_right = 0
         self.in_neutral_special_left = 0
@@ -1160,92 +811,53 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.neutral_b_hitstun = 5
 
         # SIDE SPECIAL SETUP AND ATTRIBUTES
-        self.side_special_right = ["../PlatformFighter/Stickman Character/Side Special/Side_Special_0.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_0.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_1.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_1.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_2.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_2.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_3.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_3.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_4.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_4.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_5.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_5.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_6.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_6.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_7.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_7.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_8.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_8.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_9.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_9.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_10.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_10.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_11.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_11.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_12.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_12.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_13.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_13.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_14.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_14.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_15.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_15.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png",
-                                   "../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png"]
-        self.side_special_left = ["../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_0.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_0.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_1.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_1.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_2.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_2.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_3.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_3.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_4.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_4.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_5.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_5.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_6.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_6.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_7.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_7.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_8.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_8.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_9.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_9.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_10.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_10.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_11.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_11.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_12.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_12.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_13.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_13.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_14.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_14.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_15.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_15.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_16.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_16.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_16.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_16.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_16.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_16.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_16.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_16.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_16.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_16.png",
-                                  "../PlatformFighter/Stickman Character/Side Special/Side_Special_reverse_16.png"]
+        self.side_special_right = [pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_0.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_0.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_1.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_1.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_2.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_2.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_3.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_3.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_4.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_4.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_5.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_5.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_6.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_6.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_7.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_7.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_8.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_8.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_9.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_9.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_10.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_10.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_11.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_11.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_12.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_12.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_13.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_13.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_14.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_14.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_15.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_15.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png").convert_alpha(),
+                                   pygame.image.load("../PlatformFighter/Stickman Character/Side Special/Side_Special_16.png").convert_alpha()]
+
+        self.side_special_left = []
+        for x in range(len(self.side_special_right)):
+            self.side_special_left.append(pygame.transform.flip(self.side_special_right[x], True, False))
 
         self.in_side_special_right = 0
         self.in_side_special_left = 0
@@ -1258,160 +870,87 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.side_special_hitstun = 7
 
         # UP SPECIAL SETUP AND ATTRIBUTES
-        self.up_special_right = ["../PlatformFighter/Stickman Character/Up Special/Up_Special_0.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_1.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_2.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_3.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_4.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_5.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_6.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_7.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_8.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_9.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_10.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_11.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_12.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_13.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_14.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_15.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_16.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_18.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_18.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_19.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_19.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_20.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_20.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_21.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_21.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_22.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_22.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_23.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_23.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_24.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_24.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_25.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_25.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_26.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_26.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_27.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_27.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_28.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_28.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_29.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_29.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_30.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_30.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_31.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_31.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_32.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_32.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png",
-                                 "../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png"]
-        self.up_special_left = ["../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_0.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_1.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_2.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_3.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_4.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_5.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_6.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_7.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_8.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_9.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_10.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_11.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_12.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_13.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_14.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_15.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_16.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_17.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_17.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_17.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_17.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_17.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_17.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_17.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_17.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_17.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_17.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_17.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_17.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_17.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_17.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_18.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_18.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_19.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_19.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_20.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_20.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_21.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_21.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_22.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_22.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_23.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_23.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_24.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_24.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_25.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_25.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_26.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_26.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_27.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_27.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_28.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_28.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_29.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_29.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_30.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_30.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_31.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_31.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_32.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_32.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png",
-                                "../PlatformFighter/Stickman Character/Up Special/Up_Special_reverse_33.png"]
+        self.up_special_right = [pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_0.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_1.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_2.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_3.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_4.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_5.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_6.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_7.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_8.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_9.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_10.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_11.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_12.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_13.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_14.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_15.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_16.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_17.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_18.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_18.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_19.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_19.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_20.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_20.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_21.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_21.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_22.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_22.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_23.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_23.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_24.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_24.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_25.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_25.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_26.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_26.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_27.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_27.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_28.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_28.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_29.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_29.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_30.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_30.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_31.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_31.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_32.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_32.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha(),
+                                 pygame.image.load("../PlatformFighter/Stickman Character/Up Special/Up_Special_33.png").convert_alpha()]
+
+        self.up_special_left = []
+        for x in range(len(self.up_special_right)):
+            self.up_special_left.append(pygame.transform.flip(self.up_special_right[x], True, False))
 
         self.in_up_special_right = 0
         self.in_up_special_left = 0
@@ -1434,85 +973,53 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         # DOWN SPECIAL SETUP AND ATTRIBUTES
 
-        self.down_special_ground_right = ["../PlatformFighter/Stickman Character/Down Special/Down_Special_0.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_1.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_2.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_3.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_4.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_5.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_6.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_7.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_8.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_9.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_10.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_11.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_12.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_13.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_14.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_15.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_16.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_17.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_18.png",
-                                          "../PlatformFighter/Stickman Character/Down Special/Down_Special_19.png"]
-        self.down_special_ground_left = [
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_0.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_1.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_2.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_3.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_4.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_5.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_6.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_7.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_8.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_9.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_10.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_11.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_12.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_13.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_14.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_15.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_16.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_17.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_18.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_reverse_19.png"]
+        self.down_special_ground_right = [pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_0.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_1.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_2.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_3.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_4.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_5.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_6.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_7.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_8.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_9.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_10.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_11.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_12.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_13.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_14.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_15.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_16.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_17.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_18.png").convert_alpha(),
+                                          pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_19.png").convert_alpha()]
 
-        self.down_special_air_right = ["../PlatformFighter/Stickman Character/Down Special/Down_Special_air_0.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_1.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_2.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_3.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_4.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_5.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_6.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_7.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_8.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_9.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_10.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_11.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_12.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_13.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_14.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_15.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_16.png",
-                                       "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_16.png"]
-        self.down_special_air_left = [
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_0.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_1.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_2.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_3.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_4.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_5.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_6.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_7.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_8.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_9.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_10.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_11.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_12.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_13.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_14.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_15.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_16.png",
-            "../PlatformFighter/Stickman Character/Down Special/Down_Special_air_reverse_16.png"]
+        self.down_special_ground_left = []
+        for x in range(len(self.down_special_ground_right)):
+            self.down_special_ground_left.append(pygame.transform.flip(self.down_special_ground_right[x], True, False))
+
+        self.down_special_air_right = [pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_0.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_1.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_2.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_3.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_4.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_5.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_6.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_7.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_8.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_9.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_10.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_11.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_12.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_13.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_14.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_15.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_16.png").convert_alpha(),
+                                       pygame.image.load("../PlatformFighter/Stickman Character/Down Special/Down_Special_air_16.png").convert_alpha()]
+
+        self.down_special_air_left = []
+        for x in range(len(self.down_special_air_right)):
+            self.down_special_air_left.append(pygame.transform.flip(self.down_special_air_right[x], True, False))
 
         self.in_down_special_right = 0
         self.in_down_special_air_right = 0
@@ -1535,58 +1042,36 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.down_special_air_hitstun = 7
 
         # ROLL ACTIVATION AND ATTRIBUTES
-        self.roll_left = ["../PlatformFighter/Stickman Character/Roll/Roll_left_0.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_0.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_1.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_1.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_2.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_2.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_3.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_3.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_4.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_4.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_5.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_5.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_6.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_6.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_7.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_7.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_8.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_8.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_9.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_9.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_10.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_10.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_11.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_11.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_12.png",
-                          "../PlatformFighter/Stickman Character/Roll/Roll_left_12.png"]
-        self.roll_right = ["../PlatformFighter/Stickman Character/Roll/Roll_right_0.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_0.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_1.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_1.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_2.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_2.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_3.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_3.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_4.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_4.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_5.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_5.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_6.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_6.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_7.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_7.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_8.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_8.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_9.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_9.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_10.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_10.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_11.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_11.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_12.png",
-                           "../PlatformFighter/Stickman Character/Roll/Roll_right_12.png"]
+        self.roll_left = [pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_0.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_0.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_1.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_1.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_2.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_2.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_3.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_3.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_4.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_4.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_5.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_5.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_6.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_6.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_7.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_7.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_8.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_8.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_9.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_9.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_10.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_10.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_11.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_11.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_12.png").convert_alpha(),
+                          pygame.image.load("../PlatformFighter/Stickman Character/Roll/Roll_left_12.png").convert_alpha()]
+
+        self.roll_right = []
+        for x in range(len(self.roll_left)):
+            self.roll_right.append(pygame.transform.flip(self.roll_left[x], True, False))
 
         self.roll_left_active = False
         self.roll_right_active = False
@@ -1595,58 +1080,36 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.roll_right_frames = 0
 
         # AIR DODGE ACTIVATION AND ATTRIBUTES
-        self.airdodge_left = ["../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_1.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_1.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_2.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_2.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_3.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_3.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_4.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_4.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_5.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_5.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_6.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_6.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_7.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_7.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_8.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_8.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_9.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_9.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_10.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_10.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_11.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_11.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_12.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_12.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_13.png",
-                              "../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_13.png"]
-        self.airdodge_right = ["../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_1.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_1.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_2.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_2.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_3.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_3.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_4.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_4.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_5.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_5.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_6.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_6.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_7.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_7.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_8.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_8.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_9.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_9.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_10.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_10.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_11.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_11.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_12.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_12.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_13.png",
-                               "../PlatformFighter/Stickman Character/Air Dodge/airdodge_right_13.png"]
+        self.airdodge_left = [pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_1.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_1.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_2.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_2.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_3.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_3.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_4.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_4.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_5.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_5.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_6.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_6.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_7.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_7.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_8.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_8.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_9.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_9.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_10.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_10.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_11.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_11.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_12.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_12.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_13.png").convert_alpha(),
+                              pygame.image.load("../PlatformFighter/Stickman Character/Air Dodge/airdodge_left_13.png").convert_alpha()]
+
+        self.airdodge_right = []
+        for x in range(len(self.airdodge_left)):
+            self.airdodge_right.append(pygame.transform.flip(self.airdodge_left[x], True, False))
 
         self.airdodge_left_frames = 0
         self.airdodge_right_frames = 0
@@ -1757,7 +1220,7 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.hurt_pos_x = 0  # HURTBOX POSITION (X)
         self.hurt_pos_y = 0  # HURTBOX POSITION (Y)
         # SETS DEFAULT IMAGE
-        self.image = "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png"
+        self.image = pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha()
         self.proj_image = None
         # SETS IMAGE POSITION
         self.size = (30, 50)
@@ -1973,10 +1436,6 @@ class PlayerStickman(pygame.sprite.Sprite):
 
                 press_frames = 7
 
-                # if neg > 0:
-                #    self.last_dash = True
-                # elif neg < 0:
-                #    self.last_dash = False
 
         else:
             press_frames = 7
@@ -2024,7 +1483,7 @@ class PlayerStickman(pygame.sprite.Sprite):
     # HALO PLATFORM INVINCIBILITY (AKA PLATFORM HITSTUN FOR SOME REASON)
     def platformHitstun(self):
         if self.platform_hitstun > 0:
-            self.image = "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png"
+            self.image = pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha()
             self.platform_hitstun -= 1
             self.knockback_frames = 0
             self.numHitstun = 0
@@ -2060,9 +1519,6 @@ class PlayerStickman(pygame.sprite.Sprite):
             # print(self.in_buffer, self.counter-self.in_buffer[2], self.num_lag)
         elif self.counter - self.in_buffer[2] >= 12:
             self.in_buffer = [None, None, 0]
-
-        # if self.in_buffer[0] is not None:
-        #    print(self.in_buffer, self.counter-self.in_buffer[2], self.num_lag)
 
     def Current_Next_Action(self, press_left_key, press_right_key, press_up_key, press_down_key, attack_key):
         pressed_keys = pygame.key.get_pressed()
@@ -2100,23 +1556,10 @@ class PlayerStickman(pygame.sprite.Sprite):
                 self.next_action = "FastFall"
             elif self.check_dash:
                 self.next_action = "Dash"
-            # else:
-            #    self.next_action = None
-        # else:
-        #    print("0")
 
     def flash(self, shield_key, strong_key):
 
-        # if self.flash_percent < 100:
-        #    self.counter += 1
-        #    self.flash_percent += 2.5 / 60
-        # else:
-        #    self.counter = 0
-
         pressed_keys = pygame.key.get_pressed()
-
-        # if self.counter == 60:
-        #    self.counter = 0
 
         if self.flash_percent >= 100 and not self.on_ground and (
                 pressed_keys[shield_key] or self.airdodge_left_frames > 0 or self.airdodge_right_frames > 0) and \
@@ -2128,10 +1571,7 @@ class PlayerStickman(pygame.sprite.Sprite):
             self.invincibility_frames = 10
             self.airdodge_left_frames = 0
             self.airdodge_right_frames = 0
-            self.airdodge_capable = True
-        # elif self.flash_percent >= 100 and not self.on_ground and pressed_keys[
-        #     strong_key] and self.numHitstun <= 0 and self.num_lag <= 0:
-        #     print("Super")
+            self.airdodge_capable = False
 
     def press_check(self, attack_key, shield_key, strong_key, special_key):
         pygame.event.set_allowed([QUIT, KEYDOWN])
@@ -2170,8 +1610,6 @@ class PlayerStickman(pygame.sprite.Sprite):
 
                 self.pressing_left = True  # PRESSING LEFT IS ALWAYS TRUE HERE
 
-                # self.press_left_frames = self.dash(self.press_left_frames)  # AWAITS DASH COMMAND
-
         elif pressed_keys[
             player_key_left] and not self.on_ground and self.platform_hitstun == 0 and self.in_hitstop <= 0 and self.special_lag <= 0:  # AIRBORNE MOVEMENT
 
@@ -2180,8 +1618,6 @@ class PlayerStickman(pygame.sprite.Sprite):
             self.in_walk_cycle_left = 0  # ENDS WALK CYCLE
 
             self.pressing_left = True  # PRESSING LEFT IS ALWAYS TRUE HERE
-
-            # self.press_left_frames = self.dash(self.press_left_frames)  # AWAITS DASH COMMAND
 
         else:
             self.pressing_left = False  # IF YOU'RE NOT PRESSING LEFT
@@ -2194,7 +1630,6 @@ class PlayerStickman(pygame.sprite.Sprite):
         if pressed_keys[player_key_right] and self.on_ground and self.platform_hitstun == 0 and not self.is_shielding \
                 and self.num_lag == 0 and self.crouch_frames == 0 and self.in_jumpsquat == 0 and self.in_hitstop <= 0 and self.special_lag <= 0:
             # WHEN YOU CAN MOVE RIGHT
-            # self.hurtbox_size_alteration((30, 50), (self.pos.x, self.pos.y - 27))
 
             if self.on_ground:  # GROUNDED MOVEMENT
 
@@ -2213,16 +1648,12 @@ class PlayerStickman(pygame.sprite.Sprite):
 
                 self.pressing_right = True  # PRESSING RIGHT IS ALWAYS TRUE HERE
 
-                # self.press_right_frames = self.dash(self.press_right_frames)  # AWAITS DASH COMMAND
-
         elif pressed_keys[
             player_key_right] and not self.on_ground and self.platform_hitstun == 0 and self.in_hitstop <= 0 and self.special_lag <= 0:  # AIRBORNE MOVEMENT
             self.acc.x += self.airACC  # AIR MOVEMENT
             self.in_walk_cycle_right = 0  # ENDS WALK CYCLE WHEN AIRBORNE
 
             self.pressing_right = True  # PRESSING RIGHT IS ALWAYS TRUE HERE
-
-            # self.press_right_frames = self.dash(self.press_right_frames)  # AWAITS DASH COMMAND
 
         else:
             self.pressing_right = False  # IF YOU'RE NOT PRESSING LEFT
@@ -2307,14 +1738,12 @@ class PlayerStickman(pygame.sprite.Sprite):
         self.flash(shield_key, strong_key)
         self.lowerShieldStun()
         self.opponent_jumps = jumps
-        # self.flash_percent = 100
 
         if self.hit and not self.in_special and self.current_action != self.next_action:
             self.num_lag = 0
-            print(self.current_action, self.next_action)
             self.current_action = self.next_action
 
-            if self.current_action != "UTilt":  # and self.next_action != "UTilt": # or self.next_action != "UTilt":
+            if self.current_action != "UTilt":
                 self.in_up_tilt = 0
             if self.current_action != "Jab":
                 self.in_jab_left = 0
@@ -2354,32 +1783,6 @@ class PlayerStickman(pygame.sprite.Sprite):
             self.num_active_dsg = 0  # HITBOX FRAMES (DOWN SPECIAL/B, GROUND)
             self.num_active_dsa = 0  # HITBOX FRAMES (DOWN SPECIAL/B, AIR)
 
-            # if self.press_check(attack_key, shield_key, strong_key, special_key):
-            # self.in_jab_right = 0
-            # self.in_jab_left = 0
-
-            # self.in_f_tilt = 0
-            # self.in_f_tilt_left = 0
-
-            # self.in_down_tilt_right = 0
-            # self.in_down_tilt_left = 0
-
-            # self.in_up_tilt = 0
-
-            # self.in_f_air_right = 0
-            # self.in_f_air_left = 0
-
-            # self.in_down_air = 0
-
-            # self.in_up_air_right = 0
-            # self.in_up_air_left = 0
-
-            # self.in_back_air_right = 0
-            # self.in_back_air_left = 0
-
-            # self.in_neutral_air_right = 0
-            # self.in_neutral_air_left = 0
-
         if self.in_neutral_special_left > 0 or self.in_neutral_special_right > 0 or self.in_side_special_left > 0 or self.in_side_special_right > 0 or self.in_up_special_left > 0 or self.in_up_special_right > 0 or self.in_down_special_right > 0 or self.in_down_special_air_right > 0 or self.in_down_special_left > 0 or self.in_down_special_air_left > 0:
             self.in_special = True
         else:
@@ -2403,7 +1806,6 @@ class PlayerStickman(pygame.sprite.Sprite):
             self.pos.y = hitsGround[0].rect.top + 1
             self.vel.y = 0
             self.take_momentum = False
-            # self.knockback_frames = 0
             self.jumps = 10
             self.going_down = False
         else:
@@ -2574,8 +1976,6 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         elif self.in_jab_right > 0 or self.in_jab_left > 0:
 
-            # self.current_action = "Jab"
-
             if self.in_jab_right > 0:
                 if self.in_hitstop <= 0:
                     self.in_jab_right -= 1
@@ -2670,7 +2070,6 @@ class PlayerStickman(pygame.sprite.Sprite):
                     self.in_f_air_right = 0
                     self.num_active_f = 0
                     self.num_lag = 0
-                    # self.hurtbox_size_alteration((30, 50), (self.pos.x, self.pos.y - 27))
 
             elif self.in_f_air_left > 0:
                 if self.in_hitstop <= 0:
@@ -2690,7 +2089,6 @@ class PlayerStickman(pygame.sprite.Sprite):
                     self.in_f_air_left = 0
                     self.num_active_f = 0
                     self.num_lag = 0
-                    # self.hurtbox_size_alteration((30, 50), (self.pos.x, self.pos.y - 27))
 
         elif self.in_down_air > 0:
 
@@ -3106,8 +2504,6 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         elif self.in_down_special_right > 0 or self.in_down_special_left > 0:
             self.current_attack_attributes = self.down_special_ground_dmg
-            # time.sleep(1)
-            # print(self.in_down_special_right)
 
             if self.in_down_special_right > 0:
 
@@ -3143,7 +2539,6 @@ class PlayerStickman(pygame.sprite.Sprite):
                     self.hitbox_alteration(1, 0, 0, 0, 0)
 
         elif self.in_down_special_air_right > 0 or self.in_down_special_air_left > 0:
-            # time.sleep(1)
             if self.in_down_special_air_right > 0:
 
                 if self.in_hitstop <= 0:
@@ -3230,8 +2625,6 @@ class PlayerStickman(pygame.sprite.Sprite):
                 self.knockback_num_x = self.knockback_formula(component_x)
                 self.knockback_num_y = self.knockback_formula((-1 * component_y))
 
-            # print(self.knockback_frames, self.total_knockback, self.in_hitstop)
-
             if self.knockback_frames == (self.total_knockback - 1):
                 self.percentage += self.opponent_damage
                 if self.flash_percent <= 100 - self.opponent_damage * 2:
@@ -3241,7 +2634,6 @@ class PlayerStickman(pygame.sprite.Sprite):
 
             self.vel.x = self.knockback_num_x
             self.vel.y = self.knockback_num_y
-            # + (self.gravity * (self.total_knockback - self.knockback_frames))
 
             self.hitbox_alteration(1, 0, 0, 0, 0)
             self.hitbox_alteration(2, 0, 0, 0, 0)
@@ -3265,11 +2657,11 @@ class PlayerStickman(pygame.sprite.Sprite):
         # HITSTUN
         if self.platform_hitstun > 0:
             if self.direction:
-                self.hurtbox_alteration("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png",
+                self.hurtbox_alteration(pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel-1.png").convert_alpha(),
                                         (self.pos.x, self.pos.y - 50))
             else:
                 self.hurtbox_alteration(
-                    "../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png",
+                    pygame.image.load("../PlatformFighter/Stickman Character/Idle cycle/stick_char_idel_clone-1.png").convert_alpha(),
                     (self.pos.x, self.pos.y - 50))
         elif self.numHitstun > 0:
             self.hurtbox_size_alteration((30, 50), (self.pos.x, self.pos.y - 27))
@@ -3563,19 +2955,6 @@ class PlayerStickman(pygame.sprite.Sprite):
             else:
                 self.hurtbox_alteration(self.jump_left, (self.pos.x, self.pos.y - 50))
 
-        # if self.crouch_frames > 0 and not self.in_lag:
-        #   if self.direction:
-        #      self.hurtbox_alteration(self.crouch_right[(len(self.crouch_right) - 1) - self.crouch_frames],
-        #      self.hurtbox_alteration(self.crouch_right[(len(self.crouch_right) - 1) - self.crouch_frames],
-        #                             (self.pos.x, self.pos.y - 50))
-        # else:
-        #   self.hurtbox_alteration(self.crouch_left[(len(self.crouch_left) - 1) - self.crouch_frames],
-        #                          (self.pos.x, self.pos.y - 50))
-        # self.hurtbox_size_alteration((30, 40), (self.pos.x, self.pos.y - 22))
-
-        # self.hurtbox_alteration(self.image, (self.pos.x, self.pos.y - 50))
-        # self.hurtbox_size_alteration(self.size, (self.pos.x, self.pos.y - 27 + ((50 - self.size[1]) / 2)))
-
     def attack(self, attack_key, left_key, right_key, up_key, down_key):
         pressed_keys = pygame.key.get_pressed()
 
@@ -3857,7 +3236,7 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         return shield_direction
 
-    def roll(self, left_key, right_key, down_key):  # , left_key, right_key, press_frames):
+    def roll(self, left_key, right_key, down_key):
         pressed_keys = pygame.key.get_pressed()
 
         if pressed_keys[
@@ -3923,11 +3302,6 @@ class PlayerStickman(pygame.sprite.Sprite):
                     self.set_velocity = "Right"
 
             elif pressed_keys[up_key]:
-                # if pressed_keys[left_key]:
-                #    pass
-                # elif pressed_keys[right_key]:
-                #    pass
-                # else:
                 self.set_velocity = "Up"
                 self.num_lag = len(self.airdodge_left)
                 if self.direction:
@@ -3936,11 +3310,6 @@ class PlayerStickman(pygame.sprite.Sprite):
                     self.airdodge_left_frames = len(self.airdodge_left)
 
             elif pressed_keys[down_key]:
-                # if pressed_keys[left_key]:
-                #    pass
-                # elif pressed_keys[right_key]:
-                #    pass
-                # else:
                 self.set_velocity = "Down"
                 self.num_lag = len(self.airdodge_left)
                 if self.direction:
@@ -3972,24 +3341,6 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         if self.airdodge_left_frames == 18 or self.airdodge_right_frames == 18:
             self.invincibility_frames = 10
-
-        # if pressed_keys[left_key] and pressed_keys[up_key] and pressed_keys[shield_key]:
-        #    print("True")
-
-        # if 0 < self.press_left_frames < 6 and self.is_shielding:
-        #    print("Left")
-        # elif 0 < self.press_right_frames < 6 and self.is_shielding:
-        #    print("Right")
-
-    # def createHit(self): if self.num_active > 0 or self.num_active_d > 0 or self.num_active_f > 0 or
-    # self.num_active_u > 0 \ or self.num_active_u2 > 0 or self.num_active_b > 0 or self.num_active_fs > 0 or
-    # self.num_active_n13 > 0 \ or self.num_active_n4 > 0 or self.num_active_us > 0 or self.num_active_flash > 0 or
-    # self.num_active_ds > 0:
-
-    #        return True
-
-    #    else:
-    #        return False
 
     def get_angle(self, attack_attributes):
         # ATTACK ATTRIBUTES (or ATTACK_ANGLE_P_1) FORMAT: (X_COMPONENT (1), Y_COMPONENT(1), X_COMPONENT(2),
@@ -4205,7 +3556,6 @@ class PlayerStickman(pygame.sprite.Sprite):
                     self.down_special_air_dmg,
                     self.down_special_air_base, self.down_special_air_scale)
 
-        # print(attack_attributes)
         return attack_attributes
 
     def getHit(self, player, other_player, player_shield, other_player_2, other_player_proj, hitstop=0):
@@ -4242,7 +3592,6 @@ class PlayerStickman(pygame.sprite.Sprite):
 
         if (hits or hits2 or hits5) and not (hits3 or hits4 or hits6) and opponent_invincibility == 0:
             # HIT (Not shield) (Do Hitstop, hitstop)
-            # self.sfxObj.play()
             self.hitstop_counter += 1
 
             if self.num_active_ub1 > 0:
@@ -4256,7 +3605,6 @@ class PlayerStickman(pygame.sprite.Sprite):
                 self.proj_image = None
 
             if self.hitstop_counter == 1:
-                # self.in_hitstop = self.find_hitstop(self.current_attack_attributes, 1)
                 self.prev_vel_x = self.vel.x
                 self.prev_vel_y = self.vel.y
                 self.sfxObj.stop()
@@ -4265,8 +3613,6 @@ class PlayerStickman(pygame.sprite.Sprite):
                     self.flash_percent += self.current_attack_attributes
                 else:
                     self.flash_percent = 100
-            # if self.hitstop_counter == 2:
-            #    self.sfxObj.stop()
             if self.in_hitstop > 0:
                 self.vel.x = 0
                 self.vel.y = 0
@@ -4275,12 +3621,8 @@ class PlayerStickman(pygame.sprite.Sprite):
                 self.vel.y = self.prev_vel_y
 
             self.hit = True
-            # self.num_lag = 0
-            # self.in_down_special_left = 0
-            # self.in_down_special_right = 0
 
         elif hits3 or hits4 or hits6:
-            # HIT (Shield) (Do Hitstop, shieldstun)
             self.shieldSFX.play()
 
             if self.projectile_active > 0:
@@ -4297,15 +3639,7 @@ class PlayerStickman(pygame.sprite.Sprite):
                     self.flash_percent += self.current_attack_attributes * 0.5
                 else:
                     self.flash_percent = 100
-                # self.in_hitstop = self.find_hitstop(self.current_attack_attributes, 0.8)
-                # self.induce_shieldstun = self.in_hitstop
-                # print(self.in_hitstop)
-            # elif self.hitstop_counter == 2:
-            #    self.shieldSFX.stop()
             self.hit = True
-            # self.num_lag = 0
-            # self.in_down_special_left = 0
-            # self.in_down_special_right = 0
 
         elif not (self.take_knockback or self.knockback_frames > 0):
             self.hitstop_counter = 0
