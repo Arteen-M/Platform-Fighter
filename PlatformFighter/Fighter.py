@@ -7,7 +7,7 @@ from pygame.locals import *
 
 import Character_Select
 import Controls
-import PlayerStickman1
+import PlayerStickman
 import Start_Screen
 
 vec = pygame.math.Vector2
@@ -684,12 +684,12 @@ while True:
             charLoop = False
 
     if next_action[0][0] == "Stickman":
-        P1 = PlayerStickman1.PlayerStickman(BLUE, 1, hitbox_on_off, stockCount, code_check)
+        P1 = PlayerStickman.PlayerStickman(BLUE, 1, hitbox_on_off, stockCount, code_check)
         P1Char = "Stickman"
     else:
         raise ReferenceError("Player 1 Character Choice Not Found")
     if next_action[0][1] == "Stickman":
-        P2 = PlayerStickman1.PlayerStickman(RED, 2, hitbox_on_off, stockCount, code_check)
+        P2 = PlayerStickman.PlayerStickman(RED, 2, hitbox_on_off, stockCount, code_check)
         P2Char = "Stickman"
     else:
         raise ReferenceError("Player 2 Character Choice Not Found")
